@@ -1,4 +1,6 @@
-\documentclass[12pt]{article}
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{report}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage[english]{babel}
@@ -94,9 +96,10 @@
 
 \newpage
 \tableofcontents
-\mainmatter
+\mainmatter{}
 \newpage
 \input{./1_introduction.tex}
+\chapter{First Semester}
 \input{./2_task_description.tex}
 \input{./3_collaboration_techonolies.tex}
 \input{./4_evaluation_of_hadoop_distros.tex}
@@ -107,25 +110,34 @@
 \input{./9_django.tex}
 \input{./10_responsabilities.tex}
 \input{./11_conclusion_and_outlook.tex}
-\input{./12_second_semester.tex}
+\chapter{Second Semester}
+\input{./12_task_description_2.tex}
+\input{./13_2_digits_db.tex}
+\input{./14_django_2.tex}
+\input{./15_data_prediction.tex}
+\input{./17_conclusion_2.tex}
+\chapter{Junior Team}
+\input{./21_junior_task_description.tex}
+\input{./29_junior_conclusion.tex}
+\section{Outlook}
 
 \newpage
 \bibliographystyle{plain}
-\bibliography{/home/kronork/Documents/Uni/Project/DSPJReport/bibtex/library}
+\bibliography{./bibtex/library}
 \renewcommand{\listfigurename}{B Illustration Directory}
 \listoffigures
 \section*{C List of Abbreviations}
 \addcontentsline{toc}{section}{C List of Abbreviations}
 \begin{acronym}
-\acro {yarn}[YARN]{Yet Another Resource Negotiator}
-\acro {sql} [SQL]{Structured Query Language}
-\acro {nsql} [NoSQL]{Not only Sql}
-\acro {pl}[PL/pgSQL] {Procedural Language/PostgreSQL}
-\acro {osm}[OSM]{OpenStreetMap}
-\acro {hdp}[HDP]{Hortonworks Data Platform}
-\acro {hdfs} [HDFS]{Hadoop Distributed File System}
-\acro {osm}[OSM]{OpenStreetMap}
-\acro {dfsio}[DFSIO]{Data File System I/O}
+\acro{yarn}[YARN]{Yet Another Resource Negotiator}
+\acro{sql} [SQL]{Structured Query Language}
+\acro{nsql} [NoSQL]{Not only Sql}
+\acro{pl}[PL/pgSQL] {Procedural Language/PostgreSQL}
+\acro{osm}[OSM]{OpenStreetMap}
+\acro{hdp}[HDP]{Hortonworks Data Platform}
+\acro{hdfs} [HDFS]{Hadoop Distributed File System}
+\acro{osm}[OSM]{OpenStreetMap}
+\acro{dfsio}[DFSIO]{Data File System I/O}
 \end{acronym}
 \newpage
 \section*{D Attachments}
