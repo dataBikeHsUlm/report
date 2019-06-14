@@ -25,9 +25,9 @@ The view consist mainly of four parts:
 \end{enumerate}
 The \emph{index.html} file is responsible for the general structure of the web application. The \emph{style.css} file is mainly responsible for the layout of the footer which is customized and not just adapted by bootstrap. \\
 In the \emph{urls.py} we defined which HTML file should be displayed for which url. Since the web application consist of one page only we set the index.html as the entry point by calling the web application. \\
-Django provides a very secure form handling which is normally a very complex business including editing the form with a convenient interface, send it to the server, validate and clean the input and then save or pass it to further processing. With Django´s form functionality all this work is automated and also do it more securely then we would probably be able to do.
+Django provides a very secure form handling which is normally a very complex business including editing the form with a convenient interface, send it to the server, validate and clean the input and then save or pass it to further processing. With Django's form functionality all this work is automated and also do it more securely then we would probably be able to do.
 Therefore we created the file \emph{forms.py} where we directly specified the input fields with their corresponding length as well as if they are required or not.
-\begin{lstlisting}[language=bash,breaklines=true]
+\begin{lstlisting}[language=python,breaklines=true]
 class CrowForm(forms.Form):
     from_zip = forms.CharField(max_length=5,required=True)
     from_iso = forms.CharField(max_length=2,required=True)
@@ -55,7 +55,8 @@ The calculation is done based on the approach which is shown in figure \ref{fig:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %please add here the calculation bla bla bla
 
-\subsubsection{Data Prediction with MLPRegressor}
+\subsubsection{Data Prediction with MLPRegressor}\label{data_prediction}
+\input{./13_hourly_prediction.tex}
 \subsubsection{Conclusion}
 \subsection{Junior Team}
 \subsubsection{Task Description}

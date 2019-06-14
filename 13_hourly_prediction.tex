@@ -1,0 +1,48 @@
+% vim:ft=tex
+
+\section{Hourly Prediction}
+
+\subsection{Data Preparation}
+
+% Sliding windows, ...
+% Aggregation stuff...
+
+\subsubsection{Holidays}
+
+To add the bank holidays are day-based, so they should be set on a 24 hour windows.
+However, fixing the bank holidays from midnight to midnight the next day will not
+be the best solution as people might consider the evening of a bank holiday the same
+way as they do for normal week day, while the evening of the day before will be more
+interesting. Indeed, when people want to go out in the evening and go to bed late,
+they will prefer doing that when they don't have to wake up early in the morning,
+thus they may be more likely to use a bike the end of the day before the bank
+holiday than of the day itself.
+
+This is why we decided to test the accuracy of the prediction placing bank holidays
+from 6pm the day before to 6pm the day itself.
+
+% TODO: accuracies
+The accuracy of the overall model on the testing data using the bank-holidays
+starting at 6pm is 0.942942. When not using this, we get a lower accuracy of
+0.9419142.
+% TODO: RMSE ?
+
+\subsection{Learning and Prediction}
+
+For the learning part, we used the same algorithm as described in~\ref{data_prediction}.
+We trained twenty-four models, one per future hour to predict.
+For each model, we only use the past and current data to train that we match to
+the future expected number of rented bike, no other future data is used.
+
+We used the sliding-windows hourly based data over 48 hours (aggregating per slice
+of 6 hours after the first 24 hours).
+% TODO: add prediction accuracy
+On the graph below, you can see several randomly selected days in the testing set
+starting at midnight and predicting for the whole day. The title above the graph
+indicate the day used, the actual expected value is in red and the predicted one
+is in blue.
+% TODO: add image of the prediction
+
+As we can see and considering the measured accuracy, we can see that we can predict
+quite well the amount of rented bikes for the following 24 hours based on the data of
+the previous 48 hours.
