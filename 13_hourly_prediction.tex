@@ -18,13 +18,13 @@ they will prefer doing that when they don't have to wake up early in the morning
 thus they may be more likely to use a bike the end of the day before the bank
 holiday than of the day itself.
 
-This is why we decided to test the accuracy of the prediction placing bank holidays
-from 6pm the day before to 6pm the day itself.
+This is why it might be a good idea to test the accuracy of the prediction
+placing bank holidays from 6pm the day before to 6pm the day itself.
 
 % TODO: accuracies
-The accuracy of the overall model on the testing data using the bank-holidays
-starting at 6pm is 0.942942. When not using this, we get a lower accuracy of
-0.9419142.
+% The accuracy of the overall model on the testing data using the bank-holidays
+% starting at 6pm is 0.942942. When not using this, we get a lower accuracy of
+% 0.9419142.
 % TODO: RMSE ?
 
 \subsection{Learning and Prediction}
@@ -36,13 +36,17 @@ the future expected number of rented bike, no other future data is used.
 
 We used the sliding-windows hourly based data over 48 hours (aggregating per slice
 of 6 hours after the first 24 hours).
-% TODO: add prediction accuracy
+We have an accuracy of 0.800638 on the test dataset.
 On the graph below, you can see several randomly selected days in the testing set
 starting at midnight and predicting for the whole day. The title above the graph
 indicate the day used, the actual expected value is in red and the predicted one
 is in blue.
-% TODO: add image of the prediction
+\begin{figure}[H]
+\hspace{-0.9cm}
+\includegraphics[width=1.1\textwidth]{img/hourly_predictions}
+\captionof{figure}{Comparison of expected (red) and predicted (blue) hourly rented bikes on test dataset}\label{fig:hourly_pred}
+\end{figure}
 
-As we can see and considering the measured accuracy, we can see that we can predict
+As we can see on the Figure~\ref{fig:hourly_pred} and considering the measured accuracy, we can see that we can predict
 quite well the amount of rented bikes for the following 24 hours based on the data of
 the previous 48 hours.
