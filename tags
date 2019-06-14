@@ -1,0 +1,138 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3fdf28bc/
+Attachment 1:\\\\ Responsibilities	DSPRReport.tex	/^\\subsection*{Attachment 1:\\\\ Responsibilities}\\label{resp}$/;"	u	section:D Attachments
+Box	DSPRReport.tex	/^\\subsection{Box}$/;"	u	section:Collaboration Technologies
+Building and Configuration	DSPRReport.tex	/^\\subsubsection{Building and Configuration}$/;"	b	subsection:Nominatim""Installation
+By default, it uses the open API, this can be changed directly in the file `loadOsm.py`.	guillaume_report/guillaume_report.md	/^# By default, it uses the open API, this can be changed directly in the file `loadOsm.py`.$/;"	c
+C List of Abbreviations	DSPRReport.tex	/^\\section*{C List of Abbreviations}$/;"	s
+Collaboration Technologies	DSPRReport.tex	/^\\section{Collaboration Technologies}$/;"	s
+Comparison with Google Maps	guillaume_report/guillaume_report.md	/^##### Comparison with Google Maps$/;"	T
+Comparison with Google Maps :	guillaume_report/guillaume_report.md	/^##### Comparison with Google Maps :$/;"	T
+Conclusion	DSPRReport.tex	/^\\subsection{Conclusion}$/;"	u	section:Data Profiling
+Conclusion	DSPRReport.tex	/^\\subsubsection{Conclusion}$/;"	b	subsection:Second Semester""Junior Team
+Conclusion	DSPRReport.tex	/^\\subsubsection{Conclusion}$/;"	b	subsection:Second Semester""Senior Team
+Conclusion of the file sizing problem	DSPRReport.tex	/^\\subsection{Conclusion of the file sizing problem}$/;"	u	section:Data Profiling
+Conclusions and Outlook	DSPRReport.tex	/^\\section{Conclusions and Outlook}$/;"	s
+Connection to our own Nominatim server	guillaume_report/guillaume_report.md	/^### Connection to our own Nominatim server$/;"	S
+CyclingRoutes	DSPRReport.tex	/^\\subsection{CyclingRoutes}$/;"	u	section:Data Profiling
+D Attachments	DSPRReport.tex	/^\\section*{D Attachments}$/;"	s
+Data Prediction with MLPRegressor	DSPRReport.tex	/^\\subsubsection{Data Prediction with MLPRegressor}$/;"	b	subsection:Second Semester""Senior Team
+Data Preparation	DSPRReport.tex	/^\\subsection{Data Preparation}$/;"	u	section:Data Profiling
+Data Profiling	DSPRReport.tex	/^\\section{Data Profiling}$/;"	s
+Data science project - Guillaume's Part	guillaume_report/guillaume_report.md	/^# Data science project - Guillaume's Part$/;"	c
+Database	DSPRReport.tex	/^\\section{Database}$/;"	s
+Database import	DSPRReport.tex	/^\\subsection{Database import}$/;"	u	section:Nominatim
+Datamodel	DSPRReport.tex	/^\\subsection{Datamodel}$/;"	u	section:Database
+Datamodel for the postcodes and distance	guillaume_report/guillaume_report.md	/^### Datamodel for the postcodes and distance$/;"	S
+Definition of criteria	DSPRReport.tex	/^\\subsection{Definition of criteria}$/;"	u	section:Evaluation of Hadoop Distributions
+Deployment	DSPRReport.tex	/^\\subsection{Deployment}$/;"	u	section:Graphhopper
+Distance by road	guillaume_report/guillaume_report.md	/^#### Distance by road$/;"	t
+Distances as the crow flies	DSPRReport.tex	/^\\subsubsection{Distances as the crow flies}$/;"	b	subsection:Nominatim""Notebooks
+Distances by Road	DSPRReport.tex	/^\\subsubsection{Distances by Road}$/;"	b	subsection:Nominatim""Notebooks
+Django	DSPRReport.tex	/^\\section{Django}\\label{sec:django}$/;"	s
+Django	guillaume_report/guillaume_report.md	/^## Django$/;"	s
+Django Web Application	DSPRReport.tex	/^\\subsubsection{Django Web Application}$/;"	b	subsection:Second Semester""Senior Team
+Evaluation of Hadoop Distributions	DSPRReport.tex	/^\\section{Evaluation of Hadoop Distributions}$/;"	s
+Flatnode files	DSPRReport.tex	/^\\subsubsection{Flatnode files}$/;"	b	subsection:Nominatim""Database import
+Geocoding	DSPRReport.tex	/^\\subsubsection{Geocoding}$/;"	b	subsection:Nominatim""Notebooks
+GitHub	DSPRReport.tex	/^\\subsection{GitHub}$/;"	u	section:Collaboration Technologies
+Github account	guillaume_report/guillaume_report.md	/^## Github account$/;"	s
+Graphhopper	DSPRReport.tex	/^\\section{Graphhopper}$/;"	s
+Grouping all Python code to a library	guillaume_report/guillaume_report.md	/^### Grouping all Python code to a library$/;"	S
+HDP Issues	DSPRReport.tex	/^\\subsection{HDP Issues}$/;"	u	section:Evaluation of Hadoop Distributions
+Hadoop Distributions Overview	DSPRReport.tex	/^\\subsection{Hadoop Distributions Overview}\\label{hd}$/;"	u	section:Evaluation of Hadoop Distributions
+Here, we use bicycle to calculate routes.	guillaume_report/guillaume_report.md	/^# Here, we use bicycle to calculate routes.$/;"	c
+IceScrum	DSPRReport.tex	/^\\subsection{IceScrum}$/;"	u	section:Collaboration Technologies
+Initial import of the data	DSPRReport.tex	/^\\subsubsection{Initial import of the data}$/;"	b	subsection:Nominatim""Database import
+Initialize Database	DSPRReport.tex	/^\\subsection{Initialize Database}$/;"	u	section:Database
+Initializing the postal code table	guillaume_report/guillaume_report.md	/^### Initializing the postal code table$/;"	S
+Installation	DSPRReport.tex	/^\\subsection{Installation}$/;"	u	section:Database
+Installation	DSPRReport.tex	/^\\subsection{Installation}$/;"	u	section:Nominatim
+Installation of sample Hadoop Distribution	DSPRReport.tex	/^\\subsection{Installation of sample Hadoop Distribution}\\label{intallhadoop}$/;"	u	section:Evaluation of Hadoop Distributions
+Introduction	DSPRReport.tex	/^\\section{Introduction}$/;"	s
+Junior Team	DSPRReport.tex	/^\\subsection{Junior Team}$/;"	u	section:Second Semester
+Nominatim	DSPRReport.tex	/^\\section{Nominatim}$/;"	s
+Nominatim server	guillaume_report/guillaume_report.md	/^## Nominatim server$/;"	s
+Note on performance	guillaume_report/guillaume_report.md	/^##### Note on performance$/;"	T
+Notebooks	DSPRReport.tex	/^\\subsection{Notebooks}$/;"	u	section:Nominatim
+Outlook	DSPRReport.tex	/^\\subsubsection{Outlook}$/;"	b	subsection:Second Semester""Junior Team
+Performance Comparison with micro benchmarks	DSPRReport.tex	/^\\subsection{Performance Comparison with micro benchmarks}$/;"	u	section:Evaluation of Hadoop Distributions
+Plotting Data	DSPRReport.tex	/^\\subsection{Plotting Data}$/;"	u	section:Data Profiling
+Postcodes and distance tables in the database	guillaume_report/guillaume_report.md	/^## Postcodes and distance tables in the database$/;"	s
+Pricing	DSPRReport.tex	/^\\subsubsection{Pricing}$/;"	b	subsection:Graphhopper""Usage
+Python and Nominatim	guillaume_report/guillaume_report.md	/^## Python and Nominatim$/;"	s
+Querying Centroids	DSPRReport.tex	/^\\subsubsection{Querying Centroids}$/;"	b	subsection:Nominatim""Notebooks
+Querying of the centroid	guillaume_report/guillaume_report.md	/^#### Querying of the centroid$/;"	t
+Recommendation	DSPRReport.tex	/^\\subsection{Recommendation}$/;"	u	section:Evaluation of Hadoop Distributions
+Research	guillaume_report/guillaume_report.md	/^### Research$/;"	S
+Responsibilities	DSPRReport.tex	/^\\section{Responsibilities}$/;"	s
+Result :	guillaume_report/guillaume_report.md	/^##### Result :$/;"	T
+Reverse Geocoding	DSPRReport.tex	/^\\subsubsection{Reverse Geocoding}$/;"	b	subsection:Nominatim""Notebooks
+Routing API	DSPRReport.tex	/^\\subsubsection{Routing API}$/;"	b	subsection:Graphhopper""Usage
+Run MapReduce Jobs	DSPRReport.tex	/^\\subsection{Run MapReduce Jobs}$/;"	u	section:Evaluation of Hadoop Distributions
+SQL vs NOSql	DSPRReport.tex	/^\\subsection{SQL vs NOSql}$/;"	u	section:Database
+Second Semester	DSPRReport.tex	/^\\section{Second Semester}$/;"	s
+Senior Team	DSPRReport.tex	/^\\subsection{Senior Team}$/;"	u	section:Second Semester
+Setting up PostgreSQL	DSPRReport.tex	/^\\subsubsection{Setting up PostgreSQL}$/;"	b	subsection:Nominatim""Installation
+Setting up the Webserver	DSPRReport.tex	/^\\subsubsection{Setting up the Webserver}$/;"	b	subsection:Nominatim""Installation
+Skype	DSPRReport.tex	/^\\subsection{Skype}$/;"	u	section:Collaboration Technologies
+System Configuration	DSPRReport.tex	/^\\subsubsection{System Configuration}$/;"	b	subsection:Nominatim""Installation
+Task Description	DSPRReport.tex	/^\\section{Task Description}\\label{tasks}$/;"	s
+Task Description	DSPRReport.tex	/^\\subsubsection{Task Description}$/;"	b	subsection:Second Semester""Junior Team
+Task Description	DSPRReport.tex	/^\\subsubsection{Task Description}$/;"	b	subsection:Second Semester""Senior Team
+This gets the node ids of the two points	guillaume_report/guillaume_report.md	/^# This gets the node ids of the two points$/;"	c
+Transforming a coordinate to an address	guillaume_report/guillaume_report.md	/^#### Transforming a coordinate to an address$/;"	t
+Tutorial	guillaume_report/guillaume_report.md	/^### Tutorial$/;"	S
+Updating the data	DSPRReport.tex	/^\\subsubsection{Updating the data}$/;"	b	subsection:Nominatim""Database import
+Usage	DSPRReport.tex	/^\\subsection{Usage}$/;"	u	section:Graphhopper
+Usage	DSPRReport.tex	/^\\subsection{Usage}$/;"	u	section:Nominatim
+Weighted evaluation matrix	DSPRReport.tex	/^\\subsection{Weighted evaluation matrix}\\label{weight}$/;"	u	section:Evaluation of Hadoop Distributions
+`doRoute` calculates the route and returns a list of coordinates tuples	guillaume_report/guillaume_report.md	/^# `doRoute` calculates the route and returns a list of coordinates tuples$/;"	c
+blabla	DSPRReport.tex	/^\\subsubsection{blabla}$/;"	b	subsection:Second Semester""Junior Team
+fig:big	DSPRReport.tex	/^\\captionof{figure}{Overview of project architecture}\\label{fig:big}$/;"	l
+fig:calc	DSPRReport.tex	/^\\captionof{figure}{Theoretical example of distance calculation}\\label{fig:calc}$/;"	l
+fig:centroid	DSPRReport.tex	/^\\captionof{figure}{Centroid of Baden-Wuerttemberg shown in Google Maps}\\label{fig:centroid}$/;"	l
+fig:con	DSPRReport.tex	/^\\captionof{figure}{Connection of Nominatim with geopy}\\label{fig:con}$/;"	l
+fig:con	DSPRReport.tex	/^\\includegraphics[width=0.8\\textwidth]{img\/con}\\label{fig:con}$/;"	l
+fig:fly	DSPRReport.tex	/^\\captionof{figure}{Compute Distances as the Crow Flies shown in Google Maps}\\label{fig:fly}$/;"	l
+fig:geocode	DSPRReport.tex	/^\\captionof{figure}{Reverse Geocoding}\\label{fig:geocode}$/;"	l
+fig:mockup	DSPRReport.tex	/^\\captionof{figure}{Mockup for Django web app}\\label{fig:mockup}$/;"	l
+fig:route	DSPRReport.tex	/^\\captionof{figure}{Distance shown in Google Maps}\\label{fig:route}$/;"	l
+fig:webapp	DSPRReport.tex	/^\\captionof{figure}{Final layout of the Django web application}\\label{fig:webapp}$/;"	l
+hd	DSPRReport.tex	/^\\subsection{Hadoop Distributions Overview}\\label{hd}$/;"	l
+intallhadoop	DSPRReport.tex	/^\\subsection{Installation of sample Hadoop Distribution}\\label{intallhadoop}$/;"	l
+pic:Logo	DSPRReport.tex	/^	\\label{pic:Logo}$/;"	l
+pic:ambari	DSPRReport.tex	/^\\captionof{figure}{Ambari Surface, Host metrics on master node}\\label{pic:ambari}$/;"	l
+pic:benchmarks	DSPRReport.tex	/^\\captionof{figure}{Micro benchmarks on DFSIO \/ WordCount MapReduce Jobs}\\label{pic:benchmarks/;"	l
+pic:er	DSPRReport.tex	/^\\captionof{figure}{ER model for the MySQL Database}\\label{pic:er}$/;"	l
+pic:etchost	DSPRReport.tex	/^\\captionof{figure}{etc\/hosts configuration file}\\label{pic:etchost}$/;"	l
+pic:forrester	DSPRReport.tex	/^\\captionof{figure}{Forrester Wave of Hadoop Distributions \\citep{forrester}}\\label{pic:forres/;"	l
+pic:heat	DSPRReport.tex	/^\\captionof{figure}{Top 10 used Santander rental stations}\\label{pic:heat}$/;"	l
+pic:heat	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/heat}\\label{pic:heat}$/;"	l
+pic:hscluster	DSPRReport.tex	/^\\captionof{figure}{Ambari Wizard Installer}\\label{pic:hscluster}$/;"	l
+pic:job	DSPRReport.tex	/^\\captionof{figure}{PI Quasi Monte Carlo method executed as Cluster job}\\label{pic:job}$/;"	l
+pic:matrix	DSPRReport.tex	/^\\captionof{figure}{Weighted Comparison Table of Hadoop Distributions}\\label{pic:matrix}$/;"	l
+pic:plot1	DSPRReport.tex	/^\\captionof{figure}{Frequency of used StartStations and EndStations}\\label{pic:plot1}$/;"	l
+pic:plot2	DSPRReport.tex	/^\\captionof{figure}{Frequency of used StartStations and EndStations}\\label{pic:plot2}$/;"	l
+pic:plot2	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/plot2}\\label{pic:plot2}$/;"	l
+pic:q1	DSPRReport.tex	/^\\includegraphics[width=0.55\\textwidth]{img\/query1}\\label{pic:q1}$/;"	l
+pic:q2	DSPRReport.tex	/^\\includegraphics[width=0.9\\textwidth]{img\/query2}\\label{pic:q2}$/;"	l
+pic:spark1	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/spark1}\\label{pic:spark1}$/;"	l
+pic:spark2	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/spark2}\\label{pic:spark2}$/;"	l
+pic:spark3	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/spark3}\\label{pic:spark3}$/;"	l
+pic:spark4	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/spark4}\\label{pic:spark4}$/;"	l
+pic:spark5	DSPRReport.tex	/^\\includegraphics[width=1.1\\textwidth]{img\/spark5}\\label{pic:spark5}$/;"	l
+pic:spider	DSPRReport.tex	/^\\captionof{figure}{Spider Chart of compared Hadoop Distributions}\\label{pic:spider}$/;"	l
+pic:words	DSPRReport.tex	/^\\captionof{figure}{Output of WordCount job}\\label{pic:words}$/;"	l
+resp	DSPRReport.tex	/^\\subsection*{Attachment 1:\\\\ Responsibilities}\\label{resp}$/;"	l
+sec:django	DSPRReport.tex	/^\\section{Django}\\label{sec:django}$/;"	l
+tab:criteria	DSPRReport.tex	/^\\label{tab:criteria}$/;"	l
+tab:distributions	DSPRReport.tex	/^\\label{tab:distributions}$/;"	l
+tab:issues	DSPRReport.tex	/^\\label{tab:issues}$/;"	l
+tasks	DSPRReport.tex	/^\\section{Task Description}\\label{tasks}$/;"	l
+weight	DSPRReport.tex	/^\\subsection{Weighted evaluation matrix}\\label{weight}$/;"	l

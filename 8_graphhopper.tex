@@ -1,0 +1,72 @@
+% vim:ft=tex
+
+\section{Graphhopper}
+
+Graphhopper is an open-source routing library and server written in Java which provides a web
+interface called Graphhopper Maps as well as a routing API over HTTP.
+\subsection{Deployment}
+For simplicity you could just start jetty from maven and schedule it as background job: 
+\begin{lstlisting}[language=bash,breaklines=true]
+graphhopper.sh -a web -i europe_germany_berlin.pbf -d --port 11111
+\end{lstlisting}
+Then the service will be accessible on port 11111.
+For production usage you have a web service included. Use \textbf{-c config.yml} in the script to point to
+it. Increase the \textbf{-Xmx/-Xms} values of your server server e.g. for world wide coverage with a
+hierarchical graph do the following before calling \textbf{graphhopper.sh}:
+\begin{lstlisting}[language=bash,breaklines=true]
+export JAVA_OPTS="-server -Xconcurrentio -Xmx17000m -Xms17000m"
+\end{lstlisting}
+Graphhopper is able to handle coverage for the whole OpenStreetMap road network. It needs
+approximately 22GB RAM for the import (CAR only) and ~1 hour (plus ~5h for contraction). If
+you can accept slower import times this can be reduced to 14GB RAM - you'll need to set
+\textbf{datareader.dataaccess=MMAP}. Then 'only' 15GB are necessary. Without contraction hierarchy this would be about 9GB. With CH the service is able to handle about 180 queries per second (from localhost to localhost this was 300qps). Measured for CAR routing, real world requests, at least 100km long, on alinux machine with 8 cores and 32GB, java 1.7.0\_25, jetty 8.1.10 via the QueryTorture class (10
+worker threads).\\
+Especially for large heaps you should use \textbf{-XX:+UseG1GC}. Optionally add \textbf{-XX:MetaspaceSize=100M}.
+Avoid swapping e.g. on linux via \textbf{vm.swappiness=0} in \textbf{/etc/sysctl.conf}.
+If you want to use elevation data you need to increase the allowed number of open files. Under
+linux this works as follows:
+\begin{itemize}
+\item sudo vi /etc/security/limits.conf
+\item add: * - nofile 100000 which means set hard and soft limit of "number of open files" for all users to 100K
+\item sudo vi /etc/sysctl.conf
+\item add: fs.file-max = 90000
+\item reboot now (or sudo sysctl -p; and re-login)
+\item afterwards ulimit -Hn and ulimit -Sn should give you 100000
+\end{itemize}
+\subsection{Usage}
+Our endpoint is \textbf{https://graphhopper.com/api/[version]/vrp}.
+Graphopper can provide up to 6 APIs: 
+\begin{itemize}
+\item Routing API
+\item Route Optimization API
+\item Isochrone API
+\item Map Matching API
+\item Matrix API
+\item ZGeocoding API
+\end{itemize}
+\subsubsection{Routing API}
+Get distances between two points:
+\begin{lstlisting}[language=bash,breaklines=true]
+curl "https://graphhopper.com/api/1/route?
+point=51.131,12.414&point=48.224,3.867&vehicle=car&locale=de&key=[YOUR_KEY]"
+\end{lstlisting}
+Example in our case:
+\begin{lstlisting}[language=bash,breaklines=true]
+https://localhost:11111/1/route
+?point=51.131,12.414&point=48.224,3.867&vehicle=car&locale=de&key=3160e710-58ed-45da-
+bb39-09d383b1c5b2
+\end{lstlisting}
+\subsubsection{Pricing}
+The Graphhopper routing engine is open source under the permissive Apache License and is
+therefore free to use for anything. You could even integrate it in your products, modify
+Graphhopper and sell this, without noticing or contributing back. Although it is encouraged to
+contribute back so that your feature gets maintained for free by graphhopper service. Also you
+can host Graphhopper on your own servers for 'free' and do whatever you want with it.
+The Graphhopper Directions API that we host falls under usage terms and always requires an
+API key. It was decided to make it free for development purposes and open source projects,
+both with a limit of currently 500 queries per day. So, the free usage of the API in a company
+internally would not be allowed. But there are custom packages possible.\\\\
+One Routing API request costs one credit. Every 10 via-points cost one more credit. E.g. 11 via-
+points cost two credits, 21 via-points costs three credits and so on. And if you specify \textbf{optimize=true} the credits will be multiplied by 10 i.e. one requests costs 10 credits for 1 to 10 locations, 20 credits for 11 to 20 locations and so on. Changing the parameter algorithm costs additionally two credits, i.e. calculating the alternative route between two points costs 1+2=3 credits.
+For more info about the other APIs:
+\href{https://graphhopper.com/api/1/docs/FAQ/}{Graphhopper API Docs}
