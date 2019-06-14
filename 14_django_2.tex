@@ -1,12 +1,9 @@
 % vim:ft=tex
 
-\section{Second Semester}
+\section{Django Web Application}
 
-\subsection{Senior Team}
-\subsubsection{Task Description}
-\subsubsection{Django Web Application}
-As already mentioned in chapter \ref{sec:django} we already researched for the Django framework in the past semester, however the implementation of the Django web application was rescheduled to this part of the masterproject.
-The aim of this task was to develop a web application to provide distance calculation based on our Nominatim as well as our Graphhopper server. The calculation should be done by postalcodes as well as iso codes. As a result it should return the air distance as well as the distance by route of the related postalcodes. After the requirements were clear we designed a mockup (see figure \ref{fig:mockup}) in order to define the layout of the web application. 
+As already mentioned in chapter~\ref{sec:django} we already researched for the Django framework in the past semester, however the implementation of the Django web application was rescheduled to this part of the masterproject.
+The aim of this task was to develop a web application to provide distance calculation based on our Nominatim as well as our Graphhopper server. The calculation should be done by postalcodes as well as iso codes. As a result it should return the air distance as well as the distance by route of the related postalcodes. After the requirements were clear we designed a mockup (see figure~\ref{fig:mockup}) in order to define the layout of the web application. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{img/mockup}
@@ -37,7 +34,7 @@ class CrowForm(forms.Form):
 The input of this form is then processed within the \emph{views.py} file, since here the post and get requests are handled.
 The \emph{views.py} file is responsible to handle post ad get requests.
 This file calls also the responsible methods of the datamodel in order to calculate the distances. 
-Moreover it returns the results to the input fields \glqq Direct\grqq and \glqq By route\grqq which can be seen in figure \ref{fig:webapp}.
+Moreover it returns the results to the input fields \glqq Direct\grqq and \glqq By route\grqq which can be seen in figure~\ref{fig:webapp}.
 \begin{figure}[H]
 \hspace{-2.0cm}
 \includegraphics[width=1.3\textwidth]{img/webapp}
@@ -46,7 +43,7 @@ Moreover it returns the results to the input fields \glqq Direct\grqq and \glqq 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%Have fun Guillaume no it is your turn:-)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent\textbf{Calculation}\\
-The calculation is done based on the approach which is shown in figure \ref{fig:calc}.
+The calculation is done based on the approach which is shown in figure~\ref{fig:calc}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{img/calc}
@@ -54,13 +51,3 @@ The calculation is done based on the approach which is shown in figure \ref{fig:
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %please add here the calculation bla bla bla
-
-\subsubsection{Data Prediction with MLPRegressor}\label{data_prediction}
-\input{./13_hourly_prediction.tex}
-\subsubsection{Conclusion}
-\subsection{Junior Team}
-\subsubsection{Task Description}
-\subsubsection{blabla}
-\subsubsection{blabla}
-\subsubsection{Conclusion}
-\subsubsection{Outlook}

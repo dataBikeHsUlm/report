@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{report}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage[english]{babel}
@@ -94,38 +94,49 @@
 
 \newpage
 \tableofcontents
-\mainmatter
+\mainmatter{}
 \newpage
-\input{./1_introduction.tex}
-\input{./2_task_description.tex}
-\input{./3_collaboration_techonolies.tex}
-\input{./4_evaluation_of_hadoop_distros.tex}
-\input{./5_data_profiling.tex}
-\input{./6_nominatim.tex}
-\input{./7_database.tex}
-\input{./8_graphhopper.tex}
-\input{./9_django.tex}
+\input{./01_introduction.tex}
+\chapter{Senior First Semester}
+\input{./02_task_description.tex}
+\input{./03_collaboration_techonolies.tex}
+\input{./04_evaluation_of_hadoop_distros.tex}
+\input{./05_data_profiling.tex}
+\input{./06_nominatim.tex}
+\input{./07_database.tex}
+\input{./08_graphhopper.tex}
+\input{./09_django.tex}
 \input{./10_responsabilities.tex}
 \input{./11_conclusion_and_outlook.tex}
-\input{./12_second_semester.tex}
+\chapter{Senior Second Semester}
+\input{./12_task_description_2.tex}
+\input{./13_2_digits_db.tex}
+\input{./14_django_2.tex}
+\input{./15_data_prediction.tex}
+\input{./16_hourly.tex}
+\input{./17_conclusion_2.tex}
+\chapter{Junior Team}
+\input{./21_junior_task_description.tex}
+\input{./29_junior_conclusion.tex}
+\section{Outlook}
 
 \newpage
 \bibliographystyle{plain}
-\bibliography{/home/kronork/Documents/Uni/Project/DSPJReport/bibtex/library}
+\bibliography{./bibtex/library}
 \renewcommand{\listfigurename}{B Illustration Directory}
 \listoffigures
 \section*{C List of Abbreviations}
 \addcontentsline{toc}{section}{C List of Abbreviations}
 \begin{acronym}
-\acro {yarn}[YARN]{Yet Another Resource Negotiator}
-\acro {sql} [SQL]{Structured Query Language}
-\acro {nsql} [NoSQL]{Not only Sql}
-\acro {pl}[PL/pgSQL] {Procedural Language/PostgreSQL}
-\acro {osm}[OSM]{OpenStreetMap}
-\acro {hdp}[HDP]{Hortonworks Data Platform}
-\acro {hdfs} [HDFS]{Hadoop Distributed File System}
-\acro {osm}[OSM]{OpenStreetMap}
-\acro {dfsio}[DFSIO]{Data File System I/O}
+\acro{yarn}[YARN]{Yet Another Resource Negotiator}
+\acro{sql} [SQL]{Structured Query Language}
+\acro{nsql} [NoSQL]{Not only Sql}
+\acro{pl}[PL/pgSQL] {Procedural Language/PostgreSQL}
+\acro{osm}[OSM]{OpenStreetMap}
+\acro{hdp}[HDP]{Hortonworks Data Platform}
+\acro{hdfs} [HDFS]{Hadoop Distributed File System}
+\acro{osm}[OSM]{OpenStreetMap}
+\acro{dfsio}[DFSIO]{Data File System I/O}
 \end{acronym}
 \newpage
 \section*{D Attachments}
