@@ -10,7 +10,7 @@
 \subsubsection{Holidays}
 
 To add the bank holidays are day-based, so they should be set on a 24 hour windows.
-However, fixing the bank holidays from midnight to midnight the next day will not
+However, fixing the bank holidays from midnight to midnight the next day might not
 be the best solution as people might consider the evening of a bank holiday the same
 way as they do for normal week day, while the evening of the day before will be more
 interesting. Indeed, when people want to go out in the evening and go to bed late,
@@ -23,8 +23,8 @@ placing bank holidays from 6pm the day before to 6pm the day itself.
 
 % TODO: accuracies
 % The accuracy of the overall model on the testing data using the bank-holidays
-% starting at 6pm is 0.942942. When not using this, we get a lower accuracy of
-% 0.9419142.
+% starting at 6pm is []. When not using this, we get a lower accuracy of
+% [].
 % TODO: RMSE ?
 
 \subsection{Learning and Prediction}
@@ -38,9 +38,9 @@ We used the sliding-windows hourly based data over 48 hours (aggregating per sli
 of 6 hours after the first 24 hours).
 We have an accuracy of 0.800638 on the test dataset.
 On the graph below, you can see several randomly selected days in the testing set
-starting at midnight and predicting for the whole day. The title above the graph
-indicate the day used, the actual expected value is in red and the predicted one
-is in blue.
+starting at midnight and predicting for the whole day. The title above each graph
+indicates the date displayed, the actual expected value is in red and the
+predicted one is in blue.
 \begin{figure}[H]
 \hspace{-0.9cm}
 \includegraphics[width=1.1\textwidth]{img/hourly_predictions}
