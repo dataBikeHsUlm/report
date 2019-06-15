@@ -31,8 +31,9 @@ placing bank holidays from 6pm the day before to 6pm the day itself.
 
 For the learning part, we used the same algorithm as described in~\ref{data_prediction}.
 We trained twenty-four models, one per future hour to predict.
-For each model, we only use the past and current data to train that we match to
-the future expected number of rented bike, no other future data is used.
+For each model, we only use the past and current data which we match to
+the future expected number of rented bike for the given following hour,
+no other future data is used.
 
 We used the sliding-windows hourly based data over 48 hours (aggregating per slice
 of 6 hours after the first 24 hours).
@@ -47,6 +48,6 @@ predicted one is in blue.
 \captionof{figure}{Comparison of expected (red) and predicted (blue) hourly rented bikes on test dataset}\label{fig:hourly_pred}
 \end{figure}
 
-As we can see on the Figure~\ref{fig:hourly_pred} and considering the measured accuracy, we can see that we can predict
-quite well the amount of rented bikes for the following 24 hours based on the data of
-the previous 48 hours.
+As we can see on the Figure~\ref{fig:hourly_pred} and considering the measured accuracy,
+we can see that we can predict quite well the amount of rented bikes for the following
+24 hours based on the data of the previous 48 hours.
