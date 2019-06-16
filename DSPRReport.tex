@@ -45,79 +45,79 @@
     \renewcommand{\thesection}{\Alph{section}}
 }%
 \renewcommand{\listfigurename}{\begingroup
-\tocchapter
-\tocfile{\listoffigurename}{B Illustration Directory}
+    \tocchapter{}
+    \tocfile{\listoffigurename}{B Illustration Directory}
 \endgroup}
 
 \begin{document}
-\frontmatter 
+\frontmatter
 
-\begin{titlepage} 
-	\newcommand{\HRule}{\rule{\linewidth}{1.5mm}} 
-	\center
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.5\textwidth]{img/hslogo}
-	\label{pic:Logo}
-	\end{figure}
-	
-	 
-	
-	\begin{center}
-	\end{center}
+\begin{titlepage}
+    \newcommand{\HRule}{\rule{\linewidth}{1.5mm}}
+    \center{}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\textwidth]{img/hslogo}\label{pic:Logo}
+    \end{figure}
 
-		{\huge Masterproject}\\[0.4cm]
-\begin{center}
-\end{center}
-		{\Large Data Science }\\ 
-		{Analytics and Prediction for Rental Bike Usage in London}
-\vfill
-\begin{center}
-		{Contributors:}\ \\
-\vspace{0.25\baselineskip}
-		{\Large Anass Khaldi, Guillaume Goni, Kathi Rodi, Pascal Riedel}
-\end{center}	
-\vfill	
-\begin{center}
-{\large Expert: Prof. Dr. von Schwerin }\\	
-\end{center}
-\begin{center}
-{\large Expert: Prof. Dr. Herbort}
-\end{center}
-\begin{center}
-{\large Expert: Prof. Dr. Goldstein}
-\end{center}
-\vfill			
-{\Large \today} 
-	
+    \begin{center}
+    \end{center}
+
+    {\huge Masterproject}\\[0.4cm]
+    \begin{center}
+    \end{center}
+    {\Large Data Science }\\
+    {Analytics and Prediction for Rental Bike Usage in London}
+    \vfill
+    \begin{center}
+        {Contributors:}\ \\
+        \vspace{0.25\baselineskip}
+        {\Large Anass Khaldi, Guillaume Goni, Kathi Rodi, Pascal Riedel}
+    \end{center}
+    \vfill
+    \begin{center}
+        {\large Expert: Prof.\ Dr.\ von Schwerin }\\
+    \end{center}
+    \begin{center}
+        {\large Expert: Prof.\ Dr.\ Herbort}
+    \end{center}
+    \begin{center}
+        {\large Expert: Prof.\ Dr.\ Goldstein}
+    \end{center}
+    \vfill
+    {\Large \today}
+
 \end{titlepage}
 
 \newpage
 \tableofcontents
 \mainmatter{}
 \newpage
+\chapter{Project Presentation and Organization}
+% TODO: reorganize, rewrite
 \input{./01_introduction.tex}
-\chapter{Senior First Semester}
 \input{./02_task_description.tex}
-\input{./03_collaboration_techonolies.tex}
-\input{./04_evaluation_of_hadoop_distros.tex}
-\input{./05_data_profiling.tex}
-\input{./06_nominatim.tex}
-\input{./07_database.tex}
-\input{./08_graphhopper.tex}
-\input{./09_django.tex}
-\input{./10_responsabilities.tex}
-\input{./11_conclusion_and_outlook.tex}
-\chapter{Senior Second Semester}
-\input{./12_task_description_2.tex}
-\input{./13_2_digits_db.tex}
-\input{./14_django_2.tex}
-\input{./15_data_prediction.tex}
-\input{./16_hourly.tex}
-\input{./17_conclusion_2.tex}
-\chapter{Junior Team}
-\input{./21_junior_task_description.tex}
-\input{./29_junior_conclusion.tex}
+\input{./03_task_description_2.tex}
+\input{./04_collaboration_technologies.tex}
+\input{./05_responsabilities.tex}
+\input{./06_conclusion_and_outlook.tex}
+\input{./07_conclusion_2.tex}
+\chapter{Postal Code Database (Nominatim and Graphhopper)}
+\input{./11_nominatim.tex}
+\input{./13_graphhopper.tex}
+\input{./12_database.tex}
+\input{./14_2_digits_db.tex}
+\input{./15_django.tex}
+\chapter{Bike Rental in London}
+\input{./21_evaluation_of_hadoop_distros.tex}
+\input{./22_data_profiling.tex}
+\input{./23_data_prediction.tex}
+\input{./24_hourly.tex}
+\chapter{Postal Code Database (Junior)}
+% TODO: other things ?
+\input{./31_junior_task_description.tex}
+\input{./32_junior_conclusion.tex}
+\chapter{Football thing}
 \section{Outlook}
 
 \newpage
@@ -128,30 +128,30 @@
 \section*{C List of Abbreviations}
 \addcontentsline{toc}{section}{C List of Abbreviations}
 \begin{acronym}
-\acro{yarn}[YARN]{Yet Another Resource Negotiator}
-\acro{sql} [SQL]{Structured Query Language}
-\acro{nsql} [NoSQL]{Not only Sql}
-\acro{pl}[PL/pgSQL] {Procedural Language/PostgreSQL}
-\acro{osm}[OSM]{OpenStreetMap}
-\acro{hdp}[HDP]{Hortonworks Data Platform}
-\acro{hdfs} [HDFS]{Hadoop Distributed File System}
-\acro{osm}[OSM]{OpenStreetMap}
-\acro{dfsio}[DFSIO]{Data File System I/O}
+    \acro{yarn}[YARN]{Yet Another Resource Negotiator}
+    \acro{sql} [SQL]{Structured Query Language}
+    \acro{nsql} [NoSQL]{Not only Sql}
+    \acro{pl}[PL/pgSQL] {Procedural Language/PostgreSQL}
+    \acro{osm}[OSM]{OpenStreetMap}
+    \acro{hdp}[HDP]{Hortonworks Data Platform}
+    \acro{hdfs} [HDFS]{Hadoop Distributed File System}
+    \acro{osm}[OSM]{OpenStreetMap}
+    \acro{dfsio}[DFSIO]{Data File System I/O}
 \end{acronym}
 \newpage
 \section*{D Attachments}
 \addcontentsline{toc}{section}{D Attachments}
 \subsection*{Attachment 1:\\ Responsibilities}\label{resp}
 \begin{landscape}
-\begin{table}[]
-\begin{tabular}{l|l|l|l|}
-\cline{2-4}
+    \begin{table}[]
+        \begin{tabular}{l|l|l|l|}
+            \cline{2-4}
                                 & Sprint 1                                                                                                                                                                                                                                          & Sprint 2                                                                                                                                                                                                                                                                                    & Sprint 3                                                                                                                                                                                                                                           \\ \hline
-\multicolumn{1}{|l|}{Anass}     & \begin{tabular}[c]{@{}l@{}}hadoop docu\\ creation of users in hadoop\\ install nominatim/ components\\ import planet database\\ compute postcodes\\ reverse geocoding in bulk\end{tabular}                                                        & \begin{tabular}[c]{@{}l@{}}design big picture\\ research maps for WebApp\\ research Django\end{tabular}                                                                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}Fixing dead hadoop node\\ installGraphhopper\\ docu Graphhopper\\ import OSM data to Graphhopper\\ write report part of edited tasks\end{tabular}                                                                       \\ \hline
-\multicolumn{1}{|l|}{Guillaume} & \begin{tabular}[c]{@{}l@{}}create user for nominatim\\ uploading SSH keys\\ querying centroids\\ distances by route\\ distances in bulk\end{tabular}                                                                                              & \begin{tabular}[c]{@{}l@{}}create GitHub repos\\ unioned all notebooks\\ connect geopy with nominatim\\ reserach Django\\ Django tutorial\\ script for initializing database\\ initialize db with postcodes\end{tabular}                                                                    & \begin{tabular}[c]{@{}l@{}}research postcodes in PostgresDB\\ script for filling zipcodes in db\\ write report part of edited tasks\end{tabular}                                                                                                   \\ \hline
-\multicolumn{1}{|l|}{Kathi}     & \begin{tabular}[c]{@{}l@{}}creating team Box\\ creating templates\\ documentation OSM API\\ geocoding/reverse Geocoding\\ distances as the crow flies\\ design ER model\\ create presentation for sprint review\\ Scrum Master tasks\end{tabular} & \begin{tabular}[c]{@{}l@{}}design \& finalize Big Picture\\ Graphhopper docu \& example\\ install x2go server\\ docu access vms via x2go client\\ define mockup structure\\ create mockup\\ install mysql database\\ create presentation for sprint review\\ Scrum Master tasks\end{tabular} & \begin{tabular}[c]{@{}l@{}}latex template for project report\\ write report part of edited tasks\\ union texts of team members to report\\ reorganize GitHub repositories\\ create presentation for sprint review\\ Scrum Master tasks\end{tabular} \\ \hline
-\multicolumn{1}{|l|}{Pascal}    & \begin{tabular}[c]{@{}l@{}}research hadoop distributions\\ find weightened comparison data\\ hadoop documentation\\ Installation of HDP\\ Implement Map Reduce Job\end{tabular}                                                                    & \begin{tabular}[c]{@{}l@{}}Solving Hadoop issues\\ collect TFL data \& \\ data munging on Hadoop\\ create mockup\\ installed Django server\end{tabular}                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}create spark file sizing notebook\\ CycleRoutes prepared \& collected \\ plotting statistics of cycle usage\\ solving hadoop errors\\ plotting routes of cycle data\\ write report part of edited tasks\end{tabular}    \\ \hline
-\end{tabular}
-\end{table}
-\end{landscape}
-\end{document}
+            \multicolumn{1}{|l|}{Anass}     & \begin{tabular}[c]{@{}l@{}}hadoop docu\\ creation of users in hadoop\\ install nominatim/ components\\ import planet database\\ compute postcodes\\ reverse geocoding in bulk\end{tabular}                                                        & \begin{tabular}[c]{@{}l@{}}design big picture\\ research maps for WebApp\\ research Django\end{tabular}                                                                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}Fixing dead hadoop node\\ installGraphhopper\\ docu Graphhopper\\ import OSM data to Graphhopper\\ write report part of edited tasks\end{tabular}                                                                       \\ \hline
+            \multicolumn{1}{|l|}{Guillaume} & \begin{tabular}[c]{@{}l@{}}create user for nominatim\\ uploading SSH keys\\ querying centroids\\ distances by route\\ distances in bulk\end{tabular}                                                                                              & \begin{tabular}[c]{@{}l@{}}create GitHub repos\\ unioned all notebooks\\ connect geopy with nominatim\\ reserach Django\\ Django tutorial\\ script for initializing database\\ initialize db with postcodes\end{tabular}                                                                    & \begin{tabular}[c]{@{}l@{}}research postcodes in PostgresDB\\ script for filling zipcodes in db\\ write report part of edited tasks\end{tabular}                                                                                                   \\ \hline
+            \multicolumn{1}{|l|}{Kathi}     & \begin{tabular}[c]{@{}l@{}}creating team Box\\ creating templates\\ documentation OSM API\\ geocoding/reverse Geocoding\\ distances as the crow flies\\ design ER model\\ create presentation for sprint review\\ Scrum Master tasks\end{tabular} & \begin{tabular}[c]{@{}l@{}}design \& finalize Big Picture\\ Graphhopper docu \& example\\ install x2go server\\ docu access vms via x2go client\\ define mockup structure\\ create mockup\\ install mysql database\\ create presentation for sprint review\\ Scrum Master tasks\end{tabular} & \begin{tabular}[c]{@{}l@{}}latex template for project report\\ write report part of edited tasks\\ union texts of team members to report\\ reorganize GitHub repositories\\ create presentation for sprint review\\ Scrum Master tasks\end{tabular} \\ \hline
+            \multicolumn{1}{|l|}{Pascal}    & \begin{tabular}[c]{@{}l@{}}research hadoop distributions\\ find weightened comparison data\\ hadoop documentation\\ Installation of HDP\\ Implement Map Reduce Job\end{tabular}                                                                    & \begin{tabular}[c]{@{}l@{}}Solving Hadoop issues\\ collect TFL data \& \\ data munging on Hadoop\\ create mockup\\ installed Django server\end{tabular}                                                                                                                                     & \begin{tabular}[c]{@{}l@{}}create spark file sizing notebook\\ CycleRoutes prepared \& collected \\ plotting statistics of cycle usage\\ solving hadoop errors\\ plotting routes of cycle data\\ write report part of edited tasks\end{tabular}    \\ \hline
+        \end{tabular}
+        \end{table}
+        \end{landscape}
+            \end{document}

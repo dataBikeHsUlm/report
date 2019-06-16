@@ -8,7 +8,7 @@ evaluation, a test implementation of Hortonworks was carried out on the four vir
 this purpose where some simple MapReduce jobs are carried out.
 \subsection{Hadoop Distributions Overview}\label{hd}
 For the first part of the evaluation, a search for widespread Hadoop distributions was conducted \citep{hadoopvendors,forrester,comparison2014,Cloudera,M.Heo2015}.
-As the table \ref{tab:distributions} below shows, seven noteworthy distributions were found.
+As the table~\ref{tab:distributions} below shows, seven noteworthy distributions were found.
 %\hspace{-2.5cm}
 \begin{table}[H]
 %\centering
@@ -264,7 +264,7 @@ The \emph{PI job} calculates 16 maps where each map process contains 1000 sample
 \end{figure}
 \noindent The same test has been performed with two worker nodes (i.e. two of the four workers were temporarily disabled via Ambari). After that the job took much longer (about 56 seconds). This shows that the Hadoop cluster works and already has a performance advantage over single computing. The next test was a simple WordCount job in Java that calculates the frequency of unique words in an input file distributed across the cluster. A MapReduce job consists of at least a mapper method, a reducer method and a driver method which is often the start method. Before executing the new job one has to put the file of interest on Hadoop’s HDFS. This is simply done as shown below:
 \begin{lstlisting}[language=bash,breaklines=true]
-hadoop fs –put big.txt
+hadoop fs -put big.txt
 \end{lstlisting}
 The put command will upload the file into the HDFS (i.e. it is stored fault-tolerant and replicated 3 times). After that, the following command runs a WordCount job on this text file:
 \begin{lstlisting}[language=bash,breaklines=true]
