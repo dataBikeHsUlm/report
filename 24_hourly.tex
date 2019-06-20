@@ -39,6 +39,65 @@ which then looks like this:
 \includegraphics[width=1.2\textwidth]{img/figure7_weather_df}\label{fig:figure7_weather_df}
 \captionof{figure}{Weather dataframe after transformation for two hours}\label{fig:figure7_weather_df}
 \end{figure}
+This (figure \ref{fig:figure7_weather_df}), however, is more like a jumping window technique as it uses days as start date
+and not the the single hours on each day. Nevertheless the structure of the data frame from figure \ref{fig:figure7_weather_df} can be used as ground for applying sliding window method.\\\\
+However, before the sliding window procedure could be implemented, the \glqq Start Date\grqq from figure \ref{fig:figure7_weather_df} had to be converted to an hourly format, whereby the individual hour columns had to be
+combined so that only one \glqq current column\grqq existed. For example, \glqq hum00\grqq and \glqq hum01\grqq should
+become something like \glqq Current Humidity\grqq  which shows the humidity value of each hour. This
+means that further data preparation steps are necessary.\\\\
+First, the exact timestamps of the bicycle data were read in from the provided TfL website and
+rounded off to an hourly level. For example, \glqq 23:38\grqq became \glqq 23:00\grqq  Minutes and seconds were
+ignored. An arithmetic lap (half-round mode) did not make sense, because then there would be
+overlaps with the successor day when 23 o'clock is rounded up. However, this also means that a
+slight distortion must be assumed. For example, many bicycles could be rented at a bicycle station
+at 17:52 and significantly less after 18 o'clock. Then one would notice a peak at 17 o'clock and a
+low usage at 18 o'clock, although in fact more bicycles were rented around 18 o'clock.\\\\
+Another problem was that not for every hour there was data about the usage of the bicycle stations.
+However, this data quality problem could be solved relatively easy. The missing hours can be
+determined by a user defined function. Since every day has 24 hours, this can be calculated
+manually as following (figure \ref{fig:listing6}):
+\begin{figure}[H]
+\hspace{-1.6cm}
+\includegraphics[width=1.2\textwidth]{img/listing2}\label{fig:listing6}
+\captionof{figure}{Adding missing hours on usage data}\label{fig:listing6}
+\end{figure}
+A prerequisite of this method from figure \ref{fig:listing6} is that at least one maximum value and one minimum
+value exist that serve as boundaries. If no data was collected on a day at a station, null values
+would appear. This does not happen, however, and even if it did, it would be removed at a later
+stage as such data does not provide any advantage for training a machine learning model.\\\\
+Another problem was how to transform the individual hour columns of the weather data so that
+only one column exists instead of e.g. 24 columns, whereby this new column should contain all
+values of the 24 columns arranged correctly. Fortunately the function \glqq explode\grqq exists in PySpark
+and is provided via the class \glqq pyspark.sql.functions\grqq  With \glqq explode\grqq an array can be passed,
+which then returns a new line for each element of the array \cite{RN8}. The corresponding code excerpt
+looks as following:
+\begin{figure}[H]
+\hspace{-1.6cm}
+\includegraphics[width=1.2\textwidth]{img/listing7}\label{fig:listing7}
+\captionof{figure}{Further transformation of weather data (excerpt)}\label{fig:listing7}
+\end{figure}
+The code example from figure \ref{fig:listing7} is used to transform the temperature columns, which are
+combined into a single column as described above. Thus the weather data frame is prepared to
+the extent that every hour of a day belongs to a specific hourly weather value. The lines 35 - 39 show the use of the PySpark function \glqq lag\grqq ,  that over a selected \glqq window\grqq takes the starting
+boundary \cite{RN8}. If one increments the index at this point, he will get the previous value from the
+window. Depending on how far one wants to go into the past, the window is moved over the data
+set and thus a sliding window is achieved. This can also be adapted for the future. With the function
+\glqq lead\grqq the ending boundary of a \glqq window\grqq is retrieved \cite{RN8}. Again, the future sliding window is only
+applied for the usage (target variable) and not for the weather data or other columns.\\\\
+The prepared hourly temperature data with sliding window looks finally as following:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{img/figure8_temperature_df}\label{fig:figure8_temperature_df}
+\captionof{figure}{Temperature dataframe after transformation for 3 hours (past)}\label{fig:figure8_temperature_df}
+\end{figure}
+In this example from figure \ref{fig:figure8_temperature_df} it is clearly recognizable that the initial values contain \glqq null\grqq values, which is due to the fact that no weather data was available before 04.01.2015 (or at least they
+were not fetched from Dark Sky). The number of zero values increases with the number of selected
+hours into the past. The same applies to the last lines of the Spark data frame, where null values
+may be appear for the \glqq future usage\grqq columns. Therefore the first 20 and the last 20 lines of the
+data frame are removed at the end.\\\\
+With the described PySpark transformations it was possible to create dynamic hourly data frames,
+which can then be used in the next step of the modeling phase. A corresponding test file can be
+found on GitHub in the folder data preparation.
 \subsubsection{Holidays}
 
 To add the bank holidays are day-based, so they should be set on a 24 hour windows.

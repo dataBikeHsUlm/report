@@ -184,3 +184,43 @@ This model is based on the most used station, which is King´s Cross with a data
 \captionof{figure}{Accuracy with recommended features and scaling by the QuantileTransformer}\label{fig:mlpquantile_least}
 \end{figure}
 The accuracy of the prediction of the least used station measures a \acs{rmse} of 9.311. This shows that the model works not only for highly frequented stations but also for stations like Farringdon Street with only 145 records.
+\subsection{Modelling (Polynomial Regression)}\label{poly}
+Since we don't have a linear relationship between the data, a linear regression will not be helpful.
+For example, the regress \glqq Rented Bikes\grqq is not a linear correlation of temperature as even on rainy
+days there is slight chance that more people rent a bike than on a sunny day due to a special
+holiday. Therefore polynomial regression was a selected machine learning method for the
+prediction of rented bikes on a station.\\\\
+Polynomial regression belongs to the regression forms \cite{RN9}. In fact, it is just a modified version of a
+linear regression. This means the independent variable x and the dependent variable y is modelled
+as an nth degress (so-called polynomial) in x \cite{RN9}.\\\\
+In a more formal way, the polynomial regression can be expressed as following:
+$$Y=\beta_0+\beta_1* x+\beta_2 * x^2 + \beta_3 * x^3 + ... + \beta_n * x^n$$
+Where n is the degree of the regression.\\\\
+With the scitkit-library in python a data scientist can import the function \glqq PolynomialFeatures\grqq from
+\glqq sklearn.preprocessing\grqq which transforms linear data into higher dimensional data. For example
+one could apply \glqq poly = PolynomialFeatures(degree = 3)\grqq to get a polynomial
+regression in the third dimension. This should improve the accuracy as our underlying data has
+no linear relationships but maybe higher dimensional ones. Furthermore, the higher the degree
+the better the accuracy should be. Unfortunately the computation time is exponential. A degree of
+4 already took several hours to perform and was only slightly better than a regression in the third
+dimension.\\\\
+The RSME error on a degree of 4 was around 48,4, which is in comparison to the other tested
+ones not really bad but maybe also not best one.\\\\
+Figure \ref{fig:figure9_polynomial_features} shows the different plots of each feature and the prediction (rented usage). It turns out
+that the feature Season, for example, has no German influence on the use of bicycles, whereby
+there was apparently an outlier in spring with 800 rented bicycles. It is also becoming apparent
+that bicycles are rented more frequently at low wind speeds than at high wind speeds. The average
+temperatures between 30 and 70 Fahrenheit are particularly high. Unfortunately, the addition of
+the past data has not caused much change in accuracy, as shown in figure \ref{fig:figure9_polynomial_features}.\\\\
+Figure \ref{fig:figure10_polynomial_prediction} shows a plot of the tested data (prediction) with the feature \glqq Daily Weather\grqq . The plot looks relatively good, except for a few single outliers at 2 (partly-cloudy-day), the prediction of the
+tested data matches the training data.
+\begin{figure}[H]
+\hspace{-2.8cm}
+\includegraphics[width=1.4\textwidth]{img/figure9_polynomial_features}\label{fig:figure9_polynomial_features}
+\captionof{figure}{Plot of polynomial regression (features)}\label{fig:figure9_polynomial_features}
+\end{figure}
+\begin{figure}[H]
+\hspace{-2.4cm}
+\includegraphics[width=1.3\textwidth]{img/figure10_polynomial_prediction}\label{fig:figure10_polynomial_prediction}
+\captionof{figure}{Polynomial Prediction of rental usage on daily weather}\label{fig:figure10_polynomial_prediction}
+\end{figure}

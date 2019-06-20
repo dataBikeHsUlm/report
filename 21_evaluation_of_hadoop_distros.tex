@@ -376,3 +376,40 @@ performance HDFS would be processed slowly by YARN and would probably lead to
 \emph{MemoryOutOfExceptions}. Because Hadoop and every single service on top needs resources and these can
 quickly bring a commodity computer with standard equipment to its knees. In any case, the HDP cluster is
 ready for big data tasks and will be extremely helpful to us in the further course of the project. With Apache Spark, even better performance values might be achieved due to its \glqq in-memory\grqq engine. The test cluster with the four VMs also showed which special features and requirements you should pay attention to (e.g. operating system version).
+\subsection{Hadoop Rollout}
+For the Hadoop rollout ten fat clients each with 32 GB RAM and 2 TB HDD as well as 128 GB SSD
+have been used. The nodes were connected with a 48port Gigabit switch and a routable gateway,
+so that all nodes were in a single local domain. For various reasons (e.g. security) the installation
+of a hypervisor (Proxmox) has proven to be successful, with which any number of VMs can be
+generated and configured (figure \ref{fig:figure1_proxmox}).
+\begin{figure}[H]
+\hspace{-2.8cm}
+\includegraphics[width=1.4\textwidth]{img/figure1_proxmox}\label{fig:figure1_proxmox}
+\captionof{figure}{Proxmox surface}\label{fig:figure1_proxmox}
+\end{figure}
+A VM with Ubuntu Server 18.04.02 LTS was installed for each node. Each VM got an allocated
+memory of 256 GB and a reserved memory for the Logical Volume Manager (LVM). Furthermore,
+sparse files were allowed and VirtIO SCSI interfaces were configured for the individual VMs, which
+should guarantee maximum VM performance (\cite{RN1}).\\\\
+For the first rollout attempt, six cluster nodes were configured for Hadoop. The remaining four nodes
+were later added to the existing Hadoop cluster via Ambari surface. The chosen Hadoop stack
+was HDP from Hortonworks, as already explain in the Hadoop evaluation part of this work. In
+addition, Webmin was installed on the master node, which offers extensive monitoring services
+on the node. For example, the current CPU load, memory usage, kernel information and much
+more can be displayed. Figure \ref{fig:figure2_webmin} shows the surface of Webmin. Although monitoring services
+are also offered with Ambari Metrics, they run on top of Hadoop and can only be called when
+Ambari is running as well (\cite{RN2}).
+\begin{figure}[H]
+\hspace{-3.2cm}
+\includegraphics[width=1.5\textwidth]{img/figure2_webmin}\label{fig:figure2_webmin}
+\captionof{figure}{Webmin dashboard}\label{fig:figure2_webmin}
+\end{figure}
+Before the Ambari Wizard can install HDP, some pre-configurations have to be done on each VM.
+On the one hand, \glqq ulimit\grqq must be set to at least 10000, because Ambari installs several thousand
+dependencies. On the other hand, a password-less ssh authentication is necessary so that the
+master node can connect to its worker nodes without entering a password. In addition, the master
+node must be able to execute \glqq sudo\grqq commands without entering a password. This can be done
+by editing the \glqq visudo\grqq file and adding \glqq username ALL=(ALL) NOPASSWD:ALL\grqq . Another
+necessity is to add the IP addresses and hostnames of all cluster nodes under \glqq /etc/hosts\grqq . This
+must also be done on each node individually. The following table shows the current host
+configurations of a worker respectively slave node:
