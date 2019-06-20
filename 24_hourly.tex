@@ -8,10 +8,10 @@ transformation steps are necessary to achieve this goal. Furthermore the data re
 increase significantly on an hourly granularity. Therefore the normal use of Anaconda and Jupyter
 on a local computer may be not sufficient due to low physical memory. An ideal use case for our
 newly installed Hadoop cluster! There PySpark can be used as already used under Data Profiling
-Part 1 in chapter \ref{dp1} to manage \glqq bg data\grqq transformations. Unfortunately the behaviour and syntax of PySpark
+Part 1 in chapter \ref{dp1} to manage \glqq big data\grqq transformations. Unfortunately the behavior and syntax of PySpark
 is sometimes a little more complicated than Pandas. For example, in PySpark it is not easily
 possible to iterate over rows since the data frame is distributed over the worker nodes and thus it
-only allows columnwise operations. Moreover, Pandas operations such as „iloc“ are not available
+only allows column wise operations. Moreover, Pandas operations such as „iloc“ are not available
 in PySpark. But the API comes also with some advantages, e.g. it is quite performant on big data
 scale (i.e. it can easily perform several million of records) and it has an SQL approach.
 Functions like \glqq select\grqq \glqq where\grqq and \glqq filter\grqq are syntactical close by to SQL as we know from MySQL
@@ -27,7 +27,7 @@ can already create normal columns from the JSON lists:
 \includegraphics[width=1.2\textwidth]{img/listing5}\label{fig:listing5}
 \captionof{figure}{Transformation of humidity columns (excerpt)}\label{fig:listing5}
 \end{figure}
-he excerpt from \ref{fig:listing5} shows that \glqq structTypes\grqq can be used to search the individual sublists
+he excerpt from \ref{fig:listing5} shows that \glqq structTypes\grqq can be used to search the individual sub lists
 of \glqq hourly weather\grqq .
 The complete script is contained in the Zeppelin notebook \glqq DFGeneration.json\grqq and can also be found on GitHub.
 \\\\

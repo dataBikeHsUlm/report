@@ -413,3 +413,75 @@ by editing the \glqq visudo\grqq file and adding \glqq username ALL=(ALL) NOPASS
 necessity is to add the IP addresses and hostnames of all cluster nodes under \glqq /etc/hosts\grqq . This
 must also be done on each node individually. The following table shows the current host
 configurations of a worker respectively slave node:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{IP-Address} & \textbf{List of hostnames} \\ \hline
+10.64.180.163 & \begin{tabular}[c]{@{}l@{}}hortonworks-01.dasc.cs.thu.de\\ hortonworks-01\end{tabular} \\ \hline
+10.64.83.106 & \begin{tabular}[c]{@{}l@{}}hortonworks-02.dasc.cs.thu.de\\ hortonworks-02\end{tabular} \\ \hline
+10.64.79.161 & \begin{tabular}[c]{@{}l@{}}hortonworks-03.dasc.cs.thu.de\\ hortonworks-03\end{tabular} \\ \hline
+10.64.227.154 & \begin{tabular}[c]{@{}l@{}}hortonworks-04.dasc.cs.thu.de\\ hortonworks-04\end{tabular} \\ \hline
+10.64.159.100 & \begin{tabular}[c]{@{}l@{}}hortonworks-05.dasc.cs.thu.de\\ hortonworks-05\end{tabular} \\ \hline
+10.64.204.57 & \begin{tabular}[c]{@{}l@{}}hortonworks-06.dasc.cs.thu.de\\ hortonworks-06\end{tabular} \\ \hline
+\end{tabular}
+\caption{etc/hosts of a worker node}
+\label{tab:hadooprollout}
+\end{table}
+Databases (Hive, Ranger, Druid...) are created by the Ambari Wizard as PostgreSQL databases
+automatically. Java as well as a corresponding JDBC connector are required for the individual
+services to execute database statements. The node \glqq hortonworks-01\grqq (see table \ref{tab:hadooprollout}) is both a
+master and a worker node. On the master node the Ambari Wizard installs Ambari server. The Ambari Agents, which are required for communication in the cluster, are installed on each worker
+node. Afterwards, the Ambari Wizard can be called under the following URL:\\
+\emph{hortonworks-01.dasc.cs.thu.de:8080}.\\
+The installation routine guides the user through all necessary steps. It
+is important that the Ambari agents are installed on the individual worker nodes, otherwise the
+Ambari Wizard cannot add the nodes to the cluster. The most important step is probably the
+selection of the HDP services. Similar to the evaluation step with the VMs described in section \ref{intallhadoop},
+the identical service packages were selected, i.e. YARN+MapReduce2, Tez, Hive, HBase, Pig,
+ZooKeeper, Ambari Metrics, Spark2, Zeppelin and SmartSense. But also some new services were
+added for the production cluster: Storm, Accumulo, Infra Solr, Atlas and Kafka. Since the cluster
+is to become a long-lived high performance cluster, it might reasonable to rollout the playground
+for distributed streaming platforms like Kafka or Storm which can be used for streaming analytics
+use-cases.\\\\
+Selection of services that are running on top of Hadoop is an important part of the Hadoop cluster
+setup process. Following services have been chosen from the HDP stack: \\
+all 6 virtualized nodes are DataNodes (workers) and each have a YARN NodeManager (which takes care of the resource
+distribution and monitoring of a node).\\
+Furthermore, all master components run on \glqq hortonworks-01\grqq . However, the cluster is fault-tolerant, so if the master node fails, the worker \glqq hortonworks-02\grqq
+becomes the active master. This is made possible by the secondary NameNode service that runs
+on another worker node.\\\\
+Once the individual accounts have been created for the different services, a final briefing is
+performed by Ambari before the cluster is started. A useful feature of Ambari is to download the
+complete configuration as a JSON template \cite{RN3}. This makes another Hadoop installation much
+easier because the template can be reused.\\\\
+This time, the installation process was done without any problems. HortonWorks (HDP 3.1.0)
+supports recently Ubuntu 18.04.02 LTS which makes tweaking of the operating system
+superfluous. Initializing and starting Hadoop services may take a few hours, depending on the size
+of cluster. The productive cluster now runs on Ambari 2.7.3.0 and HDP 3.1.0. By default, Zeppelin
+comes with a Python 2 kernel. However, it is possible to switch to the Python 3 kernel (IPython
+with Python 3.x).\\\\
+The Ambari interface is intuitive to use. A first look at Ambari Metrics showed that the services
+worked properly and all workers in the cluster were active. Only YARN Registry DNS did not seem
+to start due to a connection refused error because Hadoop relies heavily on a functioning DNS
+server \cite{RN4}. However, changing the YARN RDNS Binding Port from \glqq 53\grqq to \glqq 5300\grqq solved the problem.\\ Remark: the same issue happened in the evaluation part where a port conflict prevented a successful start of the Ambari server.
+\\\\
+The physical hardware configuration of the cluster consists of 10 fat nodes, as figure \ref{fig:figure3_hadoop} shows.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{img/figure3_hadoop}\label{fig:figure3_hadoop}
+\captionof{figure}{Physical Hadoop cluster}\label{fig:figure3_hadoop}
+\end{figure}
+These nodes were locally connected with a switch and a gateway so that all nodes could
+communicate with each other. Unfortunately, access outside the intranet was not possible, as the
+necessary infrastructure measures on the part of the data center are still pending. In principle,
+however, it would be possible to access the cluster from outside using VPN and a reliable
+authentication method.\\\\
+First tests with the six configured Hadoop nodes could be carried out successfully. These tests were
+based on the Zeppelin notebooks from the previous data profiling chapter \ref{dp1}, which already worked
+successfully in the virtual cluster. Compared to the virtual cluster this time the execution was much
+faster, because more RAM was available and more workers (six! instead of four) were used.\\\\
+Thus the cluster (figure \ref{fig:figure3_hadoop}) is in an operational and ready configured state. Of course, it is possible
+that a service may fail on its own or no longer run properly over time. In the evaluation phase, for
+example, it was shown that the YARN Timeline service fails more frequently. Usually, however, a
+restart of the corresponding service via the Ambari interface is sufficient. Most Hadoop services also run autonomously, i.e. a corrupt service cannot block other running services (exception: HDFS). With the new ready to use Hadoop cluster, further data profiling action of the bicycle data can now be performed in the cluster.

@@ -4,7 +4,7 @@
 As already indicated in Data Profiling Part 1 in chapter \ref{dp1}, the next step is to display the use of the routes at
 different times between the individual bicycle stations on a map. Since the Python package
 "folium" uses leaflet maps based on Javascript \cite{RN5}, the plotting of the routes on an hourly level is
-not performant, because too many polylines have to be drawn and the map can no longer be
+not performant, because too many poly lines have to be drawn and the map can no longer be
 efficiently displayed in the browser. Therefore only the top 10\% most used routes were plotted on
 the folium map. Another restriction was the aggregated granularity on a daily base. This means
 that the plotted map always showed the route usage for day x. With the folium plugin
@@ -20,11 +20,11 @@ script \glqq Cycleusage \& Cycleroutes [allStations].ipynb\grqq shows the corres
 \includegraphics[width=1.2\textwidth]{img/listing2}\label{fig:listing2}
 \captionof{figure}{Route usage over time plot}\label{fig:listing2}
 \end{figure}
-As the code from figure \ref{fig:listing2} shows, the polylines on the map have been added iteratively. The
-weight parameter can be used to determine the thickness of the polyline. Since these should look
+As the code from figure \ref{fig:listing2} shows, the poly lines on the map have been added iteratively. The
+weight parameter can be used to determine the thickness of the poly line. Since these should look
 as dynamic as possible on the map, the weight has been standardized. The fixed stations were
 initially added, but no duplicate stations were plotted. A disadvantage of the plugin is that it needs
-the data in a JSON format. Therefore the coordinates for the single points of a polyline as well as
+the data in a JSON format. Therefore the coordinates for the single points of a poly line as well as
 the time series data had to be converted into a compatible format. As can be seen from the Python
 code, the coordinates must be given the type \glqq LineString\grqq.  A LineString is defined as a sequence
 of uniquely assignable points. In this case, the longitude and latitude previously requested using
@@ -39,7 +39,7 @@ Applied to the bicycle data the following picture results for the time 26.06.201
 From figure \ref{fig:figure4_folium_plot1} it can be seen that on this day there was a moderate use of Santander Bicycles in
 inner London. Especially the hubs such as Kings Cross or Hyde Park were obviously used very
 often with Santander Bicycles on this spring day. Furthermore, the map with the thickness of the
-polylines shows how often this route was used in relation to the total use of all routes. The red
+poly lines shows how often this route was used in relation to the total use of all routes. The red
 colored routes from figure \ref{fig:figure4_folium_plot1} are the actually used routes on this particular day, while the blue
 routes are the \glqq inactive\grqq ones. The bubbles with the numbers represent the respective rental
 stations. These have only been aggregated to provide a clearer representation. If the map is
@@ -47,7 +47,7 @@ zoomed in (figure \ref{fig:figure4_folium_plot1}), the granularity is refined an
 locations are displayed. The color of these bubbles correlates with the number of aggregated
 stations in the vicinity. This method also has the advantage that it is easy to see where most rental
 stations are located. In fact, with 112 stations (see figure \ref{fig:figure4_folium_plot1}), the inner districts connected by the
-Waterloo Bridge and the London Blackfriars Bridge form the centre of most stations which are
+Waterloo Bridge and the London Blackfriars Bridge form the center of most stations which are
 close by. It should be noted, however, that new rental stations are constantly being added (even
 given up again!), and a new data extract could result in a different picture. Therefore this assumption is valid for the selected date from figure \ref{fig:figure4_folium_plot1}, but not for today or in two years. A useful
 feature that comes along with the folium plugin is the automatic data display sequence \cite{RN5}. When
@@ -128,7 +128,7 @@ As one can see from figure \ref{fig:figure6_kings_cross_df}, the past data was o
 future data was only added for the usage of the rental station. The string values were later be
 transformed into numerical values since machine learning methods always require number values
 instead of string values. Therefore a proper schema was defined, which is described in more detail
-in the modelling section.\\\\
+in the modeling section.\\\\
 With the processed bicycle data from \ref{fig:figure6_kings_cross_df}, machine learning can already be used to predict,
 for example, the daily usage of bicycles (i.e. how many bicycles will be borrowed tomorrow starting
 from today?). The script \glqq Feature Engineering Kings Cross.ipynb\grqq contains the preparation
@@ -184,19 +184,19 @@ This model is based on the most used station, which is King´s Cross with a data
 \captionof{figure}{Accuracy with recommended features and scaling by the QuantileTransformer}\label{fig:mlpquantile_least}
 \end{figure}
 The accuracy of the prediction of the least used station measures a \acs{rmse} of 9.311. This shows that the model works not only for highly frequented stations but also for stations like Farringdon Street with only 145 records.
-\subsection{Modelling (Polynomial Regression)}\label{poly}
+\subsection{Modeling (Polynomial Regression)}\label{poly}
 Since we don't have a linear relationship between the data, a linear regression will not be helpful.
 For example, the regress \glqq Rented Bikes\grqq is not a linear correlation of temperature as even on rainy
 days there is slight chance that more people rent a bike than on a sunny day due to a special
 holiday. Therefore polynomial regression was a selected machine learning method for the
 prediction of rented bikes on a station.\\\\
 Polynomial regression belongs to the regression forms \cite{RN9}. In fact, it is just a modified version of a
-linear regression. This means the independent variable x and the dependent variable y is modelled
-as an nth degress (so-called polynomial) in x \cite{RN9}.\\\\
+linear regression. This means the independent variable x and the dependent variable y is modeled
+as an nth digress (so-called polynomial) in x \cite{RN9}.\\\\
 In a more formal way, the polynomial regression can be expressed as following:
 $$Y=\beta_0+\beta_1* x+\beta_2 * x^2 + \beta_3 * x^3 + ... + \beta_n * x^n$$
 Where n is the degree of the regression.\\\\
-With the scitkit-library in python a data scientist can import the function \glqq PolynomialFeatures\grqq from
+With the Scikit-library in python a data scientist can import the function \glqq PolynomialFeatures\grqq from
 \glqq sklearn.preprocessing\grqq which transforms linear data into higher dimensional data. For example
 one could apply \glqq poly = PolynomialFeatures(degree = 3)\grqq to get a polynomial
 regression in the third dimension. This should improve the accuracy as our underlying data has
@@ -204,7 +204,7 @@ no linear relationships but maybe higher dimensional ones. Furthermore, the high
 the better the accuracy should be. Unfortunately the computation time is exponential. A degree of
 4 already took several hours to perform and was only slightly better than a regression in the third
 dimension.\\\\
-The RSME error on a degree of 4 was around 48,4, which is in comparison to the other tested
+The RMSE error on a degree of 4 was around 48,4, which is in comparison to the other tested
 ones not really bad but maybe also not best one.\\\\
 Figure \ref{fig:figure9_polynomial_features} shows the different plots of each feature and the prediction (rented usage). It turns out
 that the feature Season, for example, has no German influence on the use of bicycles, whereby
