@@ -28,7 +28,7 @@ The calculation is summarized by figure~\ref{fig:calc}.
 \captionof{figure}{Theoretical example of distance calculation}\label{fig:calc}
 \end{figure}
 
-\subsection{Filling the Database}
+\subsection{2-digits Database}
 
 \subsubsection{List of 2-digits Regions}
 
@@ -43,7 +43,7 @@ We also restrict this operation to European countries only, we can do that by fi
 postcodes by their coordinates: Europe being found between -11° West and 41° East,
 and 35° to 71° North.
 
-\subsubsection{Calculation of Region's Centroid}
+\subsubsection{Calculation of a Region's Centroid}
 
 To calculate the centroid for each region, we can compute the average coordinates
 of all postcodes of that region. However, we will have to use Graphhopper with
@@ -57,3 +57,11 @@ through the closest postalcodes to find one accepted by Graphhopper. Finally, if
 we still don't have a good point, we spiral around the average centroid until we
 find a good point or we reach 3 degrees radius (3 degrees in longitude is around
 245km in Germany). We discard every other regions that fail these three tests.
+
+\subsubsection{Filling the Database}
+
+For each couple of region centroids calculated above, we calculate the distance
+``as the crow flies'' thanks to the GeoPy function and the distance by road thanks
+to Graphhopper API and store those two results in the MySQL database.
+
+The script can be found at the GitHub repository \href{https://github.com/dataBikeHsUlm/WebApp/blob/master/fill_db_with_distances_2digits.py}{WebApp}.
