@@ -47,9 +47,13 @@ The datamodels for the postcodes and the distances were directly written in the 
 For further information on working with the database in Django, see our corresponding 
 \href{https://github.com/dataBikeHsUlm/WebApp/blob/master/django_recap.md#database}{GitHub repository}.
 \subsection{Initialize Database}
+
+\subsubsection{Geonames}
 To be able to fill the postalcode table, we need a list of all postcodes per country. The Nominatim API doesn't directly provide a function to do that, however the \emph{GeoNames}, which is a geographical database, provides a list of all postalcodes which are free to download \citep{GeoNames}.
-We implemented a first version of a script using this list and started filling the database.\\
-The problem was, some countries (like Greece) were missing and the script had problems finding some cites.  Therefore we had to find another, more reliable way to get the postcodes.
+We implemented a first version of a script using this list and started filling the database.
+Geonames was incomplete, some countries (like Greece) were missing and the script had problems finding some cites.  Therefore we had to find another, more reliable way to get the postcodes.
+
+\subsubsection{Nominatim Database}
 We decided to directly look into the Nominatim PostgreSQL database. There is in fact a table named
 \textbf{location\_area} containing the column postcodes and the related \textbf{country\_code} .
 Some rows in this table have empty \textbf{country\_code} or \textbf{postcode}, so we need to filter them out. The resulting SQL query looks as followed:
@@ -57,9 +61,19 @@ Some rows in this table have empty \textbf{country\_code} or \textbf{postcode}, 
 \hspace{1.2cm}
 \includegraphics[width=0.55\textwidth]{img/query1}\label{pic:q1}
 \end{figure}
-\noindent Then, for every postcode, we need to query Nominatim to get the centroid coordinates, but querying only with the country code and the postcode is too ambiguous and can lead to wrong centroids. To fix that, we used the \textbf{country\_name} table that lists countries with names and ISO codes. We joined this table to the previous one:
+Then, for every postcode, we need to query the Nominatim API to get the centroid
+coordinates, but querying only with the country code and the postcode is too ambiguous
+and can lead to wrong centroids.
+To fix that, we used the \textbf{country\_name} table that lists countries with
+names and ISO codes. We joined this table to the previous one:
 \begin{figure}[H]
 \hspace{1.2cm}
 \includegraphics[width=0.9\textwidth]{img/query2}\label{pic:q2}
 \end{figure}
-\noindent Using the resulting data, the script to fill the zipcode table was re-written, the database cleaned and filled with the new version of the script. The script can be found at the GitHub repository \href{https://github.com/dataBikeHsUlm/WebApp/blob/master/fill_db_from_osm.py}{WebApp}. \\To run the script, run the accompanying shell script \textbf{fill\_db.py}, it will install the dependencies before running the python code.
+
+\subsubsection{Final Script}
+
+To ensure that we don't left out any postal codes, we use both sources to fill
+the database.
+Using the resulting data, the script to fill the zipcode table was re-written, the database cleaned and filled with the new version of the script. The script can be found at the GitHub repository \href{https://github.com/dataBikeHsUlm/WebApp/blob/master/fill_db_postcodes.py}{WebApp}.
+To run the script, run the accompanying shell script \textbf{fill\_db.py}, it will install the dependencies before running the python code.
