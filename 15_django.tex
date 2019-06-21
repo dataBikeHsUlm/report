@@ -60,4 +60,13 @@ Moreover it returns the results to the input fields \glqq Direct\grqq and \glqq 
 
 \subsubsection{Calculation}
 
-As described in section~\ref{distance_algorithm},
+As described in Section~\ref{distance_algorithm}, we first need to determine the
+corresponding region for the two given postal codes and country ISO codes and
+extract from the distance database the two distances to calculate the air/road ratio.
+We use Nominatim to convert the postcodes to coordinates to calculate their
+``as the crow flies'' distance and we finally apply the regional ratio to it.
+
+If the two postcodes are in the same region, we could apply an average ratio to
+correct a little the difference with the by road distance. We could also directly
+use Graphhopper again as these are two close points and shouldn't require much
+resources to compute.
