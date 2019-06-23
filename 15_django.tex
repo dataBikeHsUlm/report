@@ -58,15 +58,15 @@ Moreover it returns the results to the input fields \glqq Direct\grqq and \glqq 
 \captionof{figure}{Final layout of the Django web application}\label{fig:webapp}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%Have fun Guillaume no it is your turn:-)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Calculation}
 
-The calculation is done based on the approach which is shown in figure~\ref{fig:calc}.
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{img/calc}
-\captionof{figure}{Theoretical example of distance calculation}\label{fig:calc}
-\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%please add here the calculation bla bla bla
+As described in Section~\ref{distance_algorithm}, we first need to determine the
+corresponding region for the two given postal codes and country ISO codes and
+extract from the distance database the two distances to calculate the air/road ratio.
+We use Nominatim to convert the postcodes to coordinates to calculate their
+``as the crow flies'' distance and we finally apply the regional ratio to it.
+
+If the two postcodes are in the same region, we could apply an average ratio to
+correct a little the difference with the by road distance. We could also directly
+use Graphhopper again as these are two close points and shouldn't require much
+resources to compute.
