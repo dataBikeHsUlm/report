@@ -1,18 +1,31 @@
 
 \section{Additional Features}
-In order the make the predictions more precise we decided to improve the feature matrix with additional features.
+In order to make the predictions more precise we decided to improve the feature matrix with additional features.
 We took into consideration which data could be meaningful for the frequency of bike rentals. 
 We came to the conclusion that the following 4 features should be added:
 \begin{itemize}
 \item Age
 \item Events
 \item Earnings
-\item Poitical Attitude
+\item Political Attitude
 \end{itemize}
-We considered the first point because we assumed that there is a specific age group which uses rental bikes more than others. We conclude from that, if we find stations where a a lot of people within this specific age group lives, we will have a higher frequency. Therefore we investigated in the target group of Santander Rental Bikes and found out that their main target group depicts of people between the age of 16 and 54 \cite{Santander}. Moreover approximately two third of their users are male. That is why we searched for data which gives us the total number of ages as well as the gender for each districct in London where Santander provides rental station data. \\\\
-Appropriate data was found at the \emph{London Datastore} where data about London's population is freely provided as an excel document. To use this data we first extracted only the district data we are interested in.  
-\subsection{Data Research}
-
-\subsection{Data Preparation}
+We considered the first point because we assumed that there is a specific age group which uses rental bikes more than others. We conclude from that, if we find stations where a lot of people within this specific age group lives, we will have a higher frequency there. Therefore we investigated in the target group of Santander Rental Bikes and found out that their main target group depicts of people between the age of 16 and 54 \cite{Santander}. Moreover approximately two third of their users are male. That is why we searched for data which gives us the total number of ages as well as the gender for each district in London where Santander provides rental station data. \\\\
+Appropriate data was found at the \emph{London Datastore} where data about London's population is freely provided as an excel document \cite{LondonData}. To use this data we first extracted only the district data we are interested in. Since there are ages from 1 to 99 available we created the same age groups like the ones Santander uses for their survey data and summed up the according values. Since we know that males using bikes more often we assigned the age group data to females as well as to males seperately. With this task the data cleansing part was done. How the data was prepared further will be explained in the following chapter \ref{sec:dpadditional} Data Preparation.\\\\
+Another feature we wanted to take into account is event data. We assume that when more events take place at a specific location, more people will visit this location and out of that more stations around this corresponding location will be used.
+For this purpose we instructed Ankur Mehra, who has done web scraping tasks before, to scrape appropriate data. The tasks was to find a source which provides event data of London over the last 4 years.\\\\
+Event data was scraped from \emph{LondonTown.com}\cite{LondonTown2019}. The description of the implementation can be found in the report of Ankur Mehra.\\\\
+Santander distinguishes between \emph{Casual Users} which use their bikes occasionally and just pay per ride and \emph{Members} which have their own keys and and pay beforehand to use bikes for one year. According to their last user survey they own more members than casual users. Moreover they found out that members have a higher average annual income than casual users, we investigated in income data as well. Our assumption was the districts in which more people with a higher income live are the districts where more potential members live and therefore where more frequency will take place.\\\\
+The \emph{Office for National Statistics} provides data of earnings in the UK from 2018, which we used as a source \cite{OfficeforNationalStatistics2019}. The data cleansing part consisted of extracting the data of the 15 districts we are interested in which can be seen in figure \ref{fig:earnings}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{img/earnings}\label{fig:earnings}
+\captionof{figure}{Cleaned earnings data}\label{fig:earnings}
+\end{figure}
+The last additional feature we took into account was the political attitude. Since using bikes instead of cars or public transportation is healthier and more environmental friendly, we assume that the most Santander users are interested in health, environmental protection and climate protection. Therefore we investigated in which parties have the most content according to those subjects, because we assume that voter of those parties will be more likely to use Santander bikes. Therefore districts with the most voters of according parties will show a higher frequency of rental bike usage.\\\\
+Therefore we researched for specific content of election programs of the several parties within the UK.
+We found out that that the \emph{UK Independence Party} have mentioned least content regarding health and climate. Slightly more information was found in the election program of the \emph{Liberal Democrats} as well as the \emph{Conservatives}. The most content to health, climate and environment was found on the agenda of the \emph{Labour Party} as well as the \emph{Green Party} \cite{SandraLavilleJohnSauven2017}.\\ Therefore we assumed that districts with a high amount of Labour Party and Green Party voters will use rental bikes more often than other districts.\\\\
+We searched for according data and were resourceful once again at the London Datastore. Here we found Data of the last four elections. We used the data of the election from 2016 and once again extracted all the data from the districts we are interested in.\\
+Nevertheless those are all just assumptions. Of course there are several other reasons than trying to live healthier or doing something good for the environment, to use rental bikes. A lot of people will use it probably only because it is fun, cheaper and they may not have a driving license for cars.  
+\subsection{Data Preparation}\label{sec:dpadditional}
 
 \subsection{Data Evaluation}
