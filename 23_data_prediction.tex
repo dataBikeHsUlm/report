@@ -1,5 +1,12 @@
 % vim:ft=tex
 \section{Prediction on Daily Basis}\label{sec:daily}
+\subsection{Introduction}\label{intro_daily}
+Data profiling from the previous chapter has already provided initial information on bicycle data and rental stations in London (see Chapter 2). We found out where most of the stations were close to each other (see Figure 2.2) as well as the top 10 most used rental stations in London. For example, the map from Figure 2.3 shows the station at Kings Cross, which has been the most used in the last 2 years with 348,832 borrowed bicycles. This is certainly due to the fact that there is a world-famous railway station and therefore many commuters prefer the bicycles on the spot. These findings and data serve as the basis for the next steps.
+One of these steps is the presentation of the bicycle usages of the individual stations over the last 4 years. The preferred route for each day should be displayed. Since this is de facto another application case for data profiling, the folium map from Figure 2.2 is further enriched in Subchapter 3.1 (Data Profiling Part 2).
+This is followed by the description of a feature engineering use-case for the "Kings Cross" station. Since it was discussed with the project stakeholders to carry out a daily based prediction, feature engineering also takes place on a daily basis. In this case, useful features are considered for the prediction of the model (e.g. holidays, weekends..., see Subchapter 3.2).
+After this data preparation phase, various regression models are used to predict the bicycle usage of a rental station. These models are all trained with the same training data set and the error rate is compared. It turns out that the use of a neural network delivers the best results. The procedure and results of the prediction are described in more detail in Section 3.3.
+In addition to the neural network, a polynomial regression is carried out (see Section 3.4), which we considered as useful in consultation with the stakeholders. The polynomial regression shows that it has a comparable error rate similar to the neural network, but the calculation of higher dimensions turns out to be computational intensive, so that we finally decided on the neural network as regressor model.
+
 \subsection{Data Profiling Part II}\label{dp2}
 As already indicated in Data Profiling Part 1 in chapter \ref{dp1}, the next step is to display the use of the routes at
 different times between the individual bicycle stations on a map. Since the Python package
@@ -32,9 +39,9 @@ the Graphhopper API on our Graphhopper server were sufficient. It is important t
 list dates, otherwise the time slider function on the map will not work properly.
 Applied to the bicycle data the following picture results for the time 26.06.2016:
 \begin{figure}[H]
-\hspace{-1.6cm}
-\includegraphics[width=1.2\textwidth]{img/figure4_folium_plot1}\label{fig:figure4_folium_plot1}
-\captionof{figure}{Used bicycle routes over time plot}\label{fig:figure4_folium_plot1}
+%\hspace{-1.6cm}
+\includegraphics[width=1\textwidth]{img/figure4_folium_plot1}\label{fig:figure4_folium_plot1}
+\captionof{figure}{Used bicycle routes over time plot (high usage)}\label{fig:figure4_folium_plot1}
 \end{figure}
 From figure \ref{fig:figure4_folium_plot1} it can be seen that on this day there was a moderate use of Santander Bicycles in
 inner London. Especially the hubs such as Kings Cross or Hyde Park were obviously used very
@@ -55,9 +62,12 @@ someone clicks on the \glqq Play\grqq button from figure \ref{fig:figure4_folium
 The speed can be adjusted with the \glqq fps\grqq slider.
 To give a counterexample, the following map shows the use of the routes on a winter’s day:
 \begin{figure}[H]
-\hspace{-1.6cm}
-\includegraphics[width=1.2\textwidth]{img/figure5_folium_plot2}\label{fig:figure5_folium_plot2}
-\captionof{figure}{Used bicycle routes over time plot}\label{fig:figure5_folium_plot2}
+%\hspace{-1.6cm}
+\begin{center}
+%\vspace{-0.9cm}
+\includegraphics[width=1\textwidth]{img/figure5_folium_plot2}\label{fig:figure5_folium_plot2}
+\captionof{figure}{Used bicycle routes over time plot (low usage)}\label{fig:figure5_folium_plot2}
+\end{center}
 \end{figure}
 On 06.01.2015 obviously less bicycles were rented than in figure \ref{fig:figure4_folium_plot1}. This is due to the fact that at
 this time it was winter and on the other hand there were only 315 Santander bicycle rental stations
@@ -207,7 +217,7 @@ dimension.\\\\
 The RMSE error on a degree of 4 was around 48,4, which is in comparison to the other tested
 ones not really bad but maybe also not best one.\\\\
 Figure \ref{fig:figure9_polynomial_features} shows the different plots of each feature and the prediction (rented usage). It turns out
-that the feature Season, for example, has no German influence on the use of bicycles, whereby
+that the feature Season, for example, has no substantial influence on the use of bicycles, whereby
 there was apparently an outlier in spring with 800 rented bicycles. It is also becoming apparent
 that bicycles are rented more frequently at low wind speeds than at high wind speeds. The average
 temperatures between 30 and 70 Fahrenheit are particularly high. Unfortunately, the addition of
