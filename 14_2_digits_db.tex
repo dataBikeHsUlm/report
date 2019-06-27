@@ -63,5 +63,6 @@ find a good point or we reach 3 degrees radius (3 degrees in longitude is around
 For each couple of region centroids calculated above, we calculate the distance
 ``as the crow flies'' thanks to the GeoPy function and the distance by road thanks
 to Graphhopper API and store those two results in the MySQL database.
+We obtain, in the end, 3399528 distances in the database in 2607 regions.
 
 The script can be found at the GitHub repository \href{https://github.com/dataBikeHsUlm/WebApp/blob/master/fill_db_with_distances_2digits.py}{WebApp}.
