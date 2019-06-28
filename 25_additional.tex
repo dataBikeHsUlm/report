@@ -46,8 +46,43 @@ With this supposition, we decided to fill missing periods with the closest data
 we have.
 
 \subsubsection{Events}
+
+First, the events are located with a postcode and a street, so we use Nominatim to extract
+their coordinates. For a few postcodes, we have to use Geonames as some are missing
+or no more used officially. Last, there is an event called ``secret cinema'' which
+happens at a location that is disclosed shortly before the rendez-vous time, so
+the postcode and street given don't exist.
+
+Second, the date field follows many different formats, from a single date, to a list,
+or a range. Here is a list of different formats found:
+\begin{itemize}
+    \item day month year
+    \item day-of-week day month year
+    \item day --- day month year
+    \item day-of-week day --- day-of-week day month year
+    \item day month --- day month year
+    \item day month to day month year
+    \item day and day month year
+    \item day, day and day month year
+    \item day month, day month and day month year
+    \item 15th May --- 05th March 2016
+    \item Various Venues
+    \item \ldots{}
+\end{itemize}
+
+We had to implement different RegEx parsing in order to parse all possibilities
+found in the database.
+Once parsed, we transformed the dates into a list of date
+(so ``15th May --- 15th June 2019'' creates 32 days between those two dates included)
+to store each event each day it appears.
+
+Finally, we created two features for each day in our original features dataset.
+For each day, we take the distance to the closest event and we count the number
+of events in a close perimeter (3 kilo-meters for instance).
+
 \subsection{Data Evaluation}
 
+\subsubsection{Demographic, Earnings, Political Attitude}
 The demographic, earnings and political attitude data per district has been
 placed in a table shown in figure~\ref{fig:addition_features}.
 \begin{figure}[H]
@@ -72,3 +107,15 @@ much accuracy. They could, however, be used to predict the usage of a new statio
 based on its location to determine whether it is relevant to proceed with construction
 or not.
 
+\subsubsection{Events}
+
+Concerning the events additional feature, it might be interesting to have more
+accurate information about the events: hour, duration, amount of people expected,
+kind of place/kind of event.
+Indeed, if the event takes place too late in the evening or involves drinking
+alcohol (if it is in a bar for example), people might not be wanting to use a bike.
+Also, if it doesn't expect many people to come, there won't be any noticeable change
+in the amount of bike rented.
+Additionally, some events last for nearly a year and might not create bike rental
+change during this whole period, rather at some precise dates but we don't have
+any details.
