@@ -14,8 +14,8 @@ Appropriate data was found at the \emph{London Datastore} where data about Londo
 Another feature we wanted to take into account is event data. We assume that when more events take place at a specific location, more people will visit this location and out of that more stations around this corresponding location will be used.
 For this purpose we instructed Ankur Mehra, who has done web scraping tasks before, to scrape appropriate data. The tasks was to find a source which provides event data of London over the last 4 years.\\\\
 Event data was scraped from \emph{LondonTown.com}\cite{LondonTown2019}. The description of the implementation can be found in the report of Ankur Mehra.\\\\
-Santander distinguishes between \emph{Casual Users} which use their bikes occasionally and just pay per ride and \emph{Members} which have their own keys and and pay beforehand to use bikes for one year. According to their last user survey they own more members than casual users. Moreover they found out that members have a higher average annual income than casual users, we investigated in income data as well. Our assumption was the districts in which more people with a higher income live are the districts where more potential members live and therefore where more frequency will take place.\\\\
-The \emph{Office for National Statistics} provides data of earnings in the UK from 2018, which we used as a source \cite{OfficeforNationalStatistics2019}. The data cleansing part consisted of extracting the data of the 15 districts we are interested in which can be seen in figure \ref{fig:earnings}.
+Santander distinguishes between \emph{Casual Users} which use their bikes occasionally and just pay per ride and \emph{Members} which have their own keys and pay beforehand to use bikes for one year. According to their last user survey they own more members than casual users. Moreover they found out that members have a higher average annual income than casual users, we investigated in income data as well. Our assumption was the districts in which more people with a higher income live are the districts where more potential members live and therefore where more frequency will take place.\\\\
+The \emph{Office for National Statistics} provides data of earnings in the UK from 2018, which we used as a source~\cite{OfficeforNationalStatistics2019}. The data cleansing part consisted of extracting the data of the 15 districts we are interested in which can be seen in figure~\ref{fig:earnings}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{img/earnings}\label{fig:earnings}
@@ -27,5 +27,48 @@ We found out that that the \emph{UK Independence Party} have mentioned least con
 We searched for according data and were resourceful once again at the London Datastore. Here we found Data of the last four elections. We used the data of the election from 2016 and once again extracted all the data from the districts we are interested in.\\
 Nevertheless those are all just assumptions. Of course there are several other reasons than trying to live healthier or doing something good for the environment, to use rental bikes. A lot of people will use it probably only because it is fun, cheaper and they may not have a driving license for cars.  
 \subsection{Data Preparation}\label{sec:dpadditional}
+\subsubsection{District to Stations}
 
+Nearly all of the additional data is stored by London district.
+To be used with our stations, we need to assign to every station a corresponding
+district.
+We first determined the centroid of the districts using Nominatim, which we compared
+to each station's coordinates to keep the closest district to each station.
+This enables us to link the \emph{age}, \emph{earnings} and \emph{political attitude}
+datasets the stations.
+
+\subsubsection{Filling Missing Years}
+
+The data we extracted doesn't necessarily contain data for the same duration as our
+bike rental data. Thankfully, some data don't check much during a few years like
+\emph{age}, \emph{earnings} and possibly \emph{political attitude} as well.
+With this supposition, we decided to fill missing periods with the closest data
+we have.
+
+\subsubsection{Events}
 \subsection{Data Evaluation}
+
+The demographic, earnings and political attitude data per district has been
+placed in a table shown in figure~\ref{fig:addition_features}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{img/additional_features}\label{fig:addition_features}
+\captionof{figure}{Additional data per district}\label{fig:addition_features}
+\end{figure}
+
+We can see that the district with the most rented bikes has also nearly the most
+station, but has the least amount of person living in it. This is the \emph{City
+of London}.
+The City is a district used mostly as a workplace by Londoners and many of them
+live in other districts, so this might suggest that people are more likely to
+rent a bike near their workplace than near their living place.
+It might then be more useful to obtain the data based on where people work
+(and possibly also where they go shopping and have a meal) rather than where
+people live, but this kind of information isn't usually available.
+
+Furthermore, since it was decided to use a different learning model for each station,
+the \emph{age}, \emph{earnings} and \emph{political attitude} datasets might not add
+much accuracy. They could, however, be used to predict the usage of a new station
+based on its location to determine whether it is relevant to proceed with construction
+or not.
+
