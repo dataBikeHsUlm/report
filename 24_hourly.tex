@@ -1,11 +1,10 @@
 % vim:ft=tex
 
 \section{Prediction on Hourly Basis}
-\subsection{Introduction}\label{intro_hourly}
-Just like in Chapter 3, data prediction is performed with the MLP regressor again. This time, however, the granularity is refined at an hourly level. This makes more training data possible. Furthermore, new correlations are created between the individual features. However, this also requires some changes in the data preparation script. Up to this stage of the project, the aggregation level at day level was sufficient. To be able to format the data from a daily format into an hourly format, both the weather data of the DarkSky API and the cycling usage data have to be re-processed, which is described in more detail in Section 4.1.
+Just like in chapter \ref{sec:daily}, data prediction is performed with the MLP regressor again. This time, however, the granularity is refined at an hourly level. This makes more training data possible. Furthermore, new correlations are created between the individual features. However, this also requires some changes in the data preparation script. Up to this stage of the project, the aggregation level at day level was sufficient. To be able to format the data from a daily format into an hourly format, both the weather data of the DarkSky API and the cycling usage data have to be re-processed, which is described in more detail in section \ref{sec:dphourly}.
 Since an hourly data prediction produces much more data than a daily prediction, this user story uses the built up Hadoop cluster as well as PySpark and Zeppelin. The tasks are typical tasks for a cluster-based calculation like Hadoop. Here, too, some parts are reused on the basis of previous scripts (e.g. the generated or calculated weather data).
-Section 4.2 deals with the training and prediction of the regression model based on the hourly prepared usage data. Subsequently it is described how the data set can be extended by additional features like "Age" or "local Events". The acquisition of these additional data was carried out by Ankur Mehra project team. 
-\subsection{Data Preparation}
+section \ref{sec:learnpred} deals with the training and prediction of the regression model based on the hourly prepared usage data. Subsequently it is described how the data set can be extended by additional features like "Age" or "local Events". The acquisition of these additional data was carried out by Ankur Mehra project team. 
+\subsection{Data Preparation}\label{sec:dphourly}
 Since the long term goal was to predict the usage on a hourly base, some further data
 transformation steps are necessary to achieve this goal. Furthermore the data records will
 increase significantly on an hourly granularity. Therefore the normal use of Anaconda and Jupyter
@@ -115,7 +114,7 @@ holiday than of the day itself.
 This is why it might be a good idea to test the accuracy of the prediction
 placing bank holidays from 6pm the day before to 6pm the day itself.
 
-\subsection{Learning and Prediction}
+\subsection{Learning and Prediction}\label{sec:learnpred}
 
 For the learning part, we used the same algorithm as described in~\ref{data_prediction}.
 We trained twenty-four models, one per future hour to predict.
