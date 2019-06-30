@@ -194,8 +194,341 @@ This model is based on the most used station, which is King´s Cross with a data
 \end{figure}
 The accuracy of the prediction of the least used station measures a \acs{rmse} of 9.311. This shows that the model works not only for highly frequented stations but also for stations like Farringdon Street with only 145 records.
 \subsection{Data Prediction with Spark}\label{sec:spark}
+Apache Spark's \acf{mlib} is designed for simplicity, scalability, and easy
+integration with other tools. With the scalability, language compatibility, and speed of Spark,
+data scientists can focus on their data problems and models instead of solving the complexities
+surrounding distributed data (such as infrastructure, configurations, and so on).
+Built on top of Spark, MLlib is a scalable machine learning library consisting of common learning
+algorithms and utilities, including classification, regression, clustering, collaborative filtering,
+dimensionality reduction, and underlying optimization primitives. Spark MLlib seamlessly
+integrates with other Spark components such as Spark SQL, Spark Streaming, and DataFrames
+and is installed in the Databricks runtime. The library is usable in Java, Scala, and Python as
+part of Spark applications, so that you can include it in complete workflows.
+MLlib allows for preprocessing, munging, training of models, and making predictions at scale on
+data. You can even use models trained in MLlib to make predictions in Structured Streaming.
+Spark provides a sophisticated machine learning API for performing a variety of machine
+learning tasks, from classification to regression, clustering to deep learning \cite{Databricks2019}.\\\\
+MLlib is Spark’s scalable machine learning library consisting of common learning algorithms and
+utilities that can be divided into two categories:\\\\
+Supervised learning:
+\begin{itemize}
+\item Classification and regression
+\begin{itemize}
+\item naive Bayes
+\item linear models (SVMs, logistic regression, linear regression)
+\item decision trees
+\item ensembles of trees (Random Forests and Gradient-Boosted Trees)
+\end{itemize}
+\end{itemize}
+Unsupervised learning:
+\begin{itemize}
+\item Collaborative filtering
+\begin{itemize}
+\item \acf{als}
+\end{itemize}
+\item Clustering
+\begin{itemize}
+\item k-means
+\end{itemize}
+\item Dimensionality reduction
+\begin{itemize}
+\item \acf{pca}
+\item \acf{svd}
+\end{itemize}
+\end{itemize}
+Spark 1.2 includes a new package called spark.ml, which aims to provide a uniform set of
+high-level APIs that help users create and tune practical machine learning pipelines. It is
+currently an alpha component, and we would like to hear back from the community about how it
+fits real-world use cases and how it could be improved.
 \subsubsection{Selected Algorithms}\label{sec:sparkalgos}
+Regression analysis consists of a set of machine learning methods that allow us to predict a
+continuous outcome variable (y) based on the value of one or multiple predictor variables (x).
+Since our goal is to make predictions on a continuous feature, the next step is to implement the
+algorithms provided the library and compare their results.\\\\
+
+\textbf{Decision Tree Regression}\\\\
+
+A decision tree is built top-down from a root node and involves partitioning the data into subsets
+that contain instances with similar values (homogeneous). We use standard deviation to calculate
+the homogeneity of a numerical sample. If the numerical sample is completely homogeneous its
+standard deviation is zero \cite{Saed2019}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/dt}\label{fig:dt}
+\captionof{figure}{Decision tree usage diagram}\label{fig:dt}
+\end{figure}
+In a standard classification tree, the idea is to split the dataset based on homogeneity of data.
+Lets say for example we have two variables: age and weight that predict if a person is going to
+sign up for a gym membership or not. In our training data if it showed that 90\% of the people
+who are older than 40 signed up, we split the data here and age becomes a top node in the
+tree. We can almost say that this split has made the data "90\% pure". Rigorous measures of
+impurity, based on computing proportion of the data that belong to a class, such as entropy or
+Gini index are used to quantify the homogeneity in Classification trees \cite{BalaDeshpande2011}.
+In a regression tree the idea is this: since the target variable does not have classes, we fit a
+regression model to the target variable using each of the independent variables. Then for each
+independent variable, the data is split at several split points. At each split point, the "error"
+between the predicted value and the actual values is squared to get a \acf{sse}. The split point errors across the variables are compared and the variable/point yielding
+the lowest SSE is chosen as the root node/split point. This process is recursively continued \cite{BalaDeshpande2011}.\\\\
+Regression trees are needed when the response variable is numeric or continuous. For
+example, the predicted price of a consumer good. Thus regression trees are applicable for
+prediction type of problems as opposed to classification.
+Keep in mind that in either case, the predictors or independent variables may be categorical or
+numeric. It is the target variable that determines the type of decision tree needed \cite{BalaDeshpande2011}.\\\\
+
+\textbf{Random Forest Regression}\\\\
+A Random Forest is an ensemble technique capable of performing both regression and
+classification tasks with the use of multiple decision trees and a technique called Bootstrap
+Aggregation, commonly known as bagging. What is bagging you may ask? Bagging, in the
+Random Forest method, involves training each decision tree on a different data sample where
+sampling is done with replacement.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/rf}\label{fig:rf}
+\captionof{figure}{Random Forest Regression: Process}\label{fig:rf}
+\end{figure}
+The basic idea behind this is to combine multiple decision trees in determining the final output
+rather than relying on individual decision trees. If you want to read more on Random Forests, I
+have included some reference links which provide in depth explanations on this topic.\\\\
+
+\textbf{Gradient Boosted Tree Regression}\\\\
+The idea of boosting came out of the idea of whether a weak learner can be modified to become
+better. Hypothesis boosting was the idea of filtering observations, leaving those observations
+that the weak learner can handle and focusing on developing new weak learns to handle the
+remaining difficult observations \cite{Brownlee2016}.\\\\
+Gradient boosting involves three elements:\\
+\begin{itemize}
+\item A loss function to be optimized:The loss function used depends on the type of problem
+being solved. It must be differentiable, but many standard loss functions are supported
+and you can define your own.
+\item A weak learner to make predictions: Decision trees are used as the weak learner in
+gradient boosting. Specifically regression trees are used that output real values for splits
+and whose output can be added together, allowing subsequent models outputs to be
+added and “correct” the residuals in the predictions. Trees are constructed in a greedy
+manner, choosing the best split points based on purity scores like Gini or to minimize the
+loss. Initially, such as in the case of AdaBoost, very short decision trees were used that
+only had a single split, called a decision stump. Larger trees can be used generally with
+4-to-8 levels. It is common to constrain the weak learners in specific ways, such as a
+maximum number of layers, nodes, splits or leaf nodes. This is to ensure that the
+learners remain weak, but can still be constructed in a greedy manner.
+\item An additive model to add weak learners to minimize the loss function: Trees are added
+one at a time, and existing trees in the model are not changed. A gradient descent
+procedure is used to minimize the loss when adding trees. Traditionally, gradient descent
+is used to minimize a set of parameters, such as the coefficients in a regression equation
+or weights in a neural network. After calculating error or loss, the weights are updated to
+minimize that error. Instead of parameters, we have weak learner sub-models or more
+specifically decision trees. After calculating the loss, to perform the gradient descent
+procedure, we must add a tree to the model that reduces the loss (i.e. follow the gradient). We do this by parameterizing the tree, then modify the parameters of the tree
+and move in the right direction by (reducing the residual loss.Generally this approach is
+called functional gradient descent or gradient descent with functions \cite{Brownlee2016}.
+\end{itemize}
 \subsubsection{Implementation}\label{sec:sparkimpl}
+The first step is to apply the algorithm using all the features, then each time based on the
+features importance function, try to remove the least important columns and check for
+improvements in the RMSE value.
+The result of the testing process is described each step by a features importance plot. The
+results are as well listed on a table.
+The figures below show the correlation between the predicted data and the real future
+measured data. The first test series was implemented by regarding the most used station.\\\\
+\textbf{Decision Tree}\\
+We start by generating a model considering all the features with a RMSE of 71.35.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test1_dt}\label{fig:test1_dt}
+\captionof{figure}{Test ​1​ features importance: 71.35}\label{fig:test1_dt}
+\end{figure}
+Figure \ref{fig:anasst1} shows the removed columns and RMSE results on on each test:
+The choice of removing features is explained by the features importance plots.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/anasst1}\label{fig:anasst1}
+\captionof{figure}{Feature evaluation test cases}\label{fig:anasst1}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test3_dt}\label{fig:test3_dt}
+\captionof{figure}{Test ​3​ features importance: 57.55}\label{fig:test3_dt}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test4_dt}\label{fig:test4_dt}
+\captionof{figure}{Test 4​ features importance: 59.27}\label{fig:test4_dt}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test5_dt}\label{fig:test5_dt}
+\captionof{figure}{Test 5​ features importance: 56.98}\label{fig:test5_dt}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test6_dt}\label{fig:test6_dt}
+\captionof{figure}{Test 6​ features importance: 56.98}\label{fig:test6_dt}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test7_dt}\label{fig:test7_dt}
+\captionof{figure}{Test 7​ features importance: 54.43}\label{fig:test7_dt}
+\end{figure}
+The final correlation results are shown in figure \ref{fig:image25} with an RMSE of 54.43.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{media/image25}\label{fig:image25}
+\captionof{figure}{Data distribution of the actual and predicted data bike usage using​ Decision Tree}\label{fig:image25}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/image26}\label{fig:image26}
+\captionof{figure}{Heat map correlation plot showing interval value of the regression line​ (Decision Tree)}\label{fig:image26}
+\end{figure}
+\textbf{Random Forest}\\
+We start by generating a model considering all the features with a RMSE of 60.04.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test1_rd}\label{fig:test1_rd}
+\captionof{figure}{Test ​1​ features importance: 60.04}\label{fig:test1_rd}
+\end{figure}
+Figure \ref{fig:anasst2} shows the removed columns and RMSE results on on each test:
+The choice of removing features is explained by the features importance plots.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/anasst2}\label{fig:anasst2}
+\captionof{figure}{Feature evaluation test cases}\label{fig:anasst2}
+\end{figure}
+The process consists of removing after each test the features with the least importance.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test2_rd}\label{fig:test2_rd}
+\captionof{figure}{Test ​2​ features importance: 62.41}\label{fig:test2_rd}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test3_rd}\label{fig:test3_rd}
+\captionof{figure}{Test ​3​ features importance: 60.98}\label{fig:test3_rd}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test4_rd}\label{fig:test4_rd}
+\captionof{figure}{Test 4 features importance: 64.64}\label{fig:test4_rd}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test5_rd}\label{fig:test5_rd}
+\captionof{figure}{Test 5 features importance: 63.08}\label{fig:test5_rd}
+\end{figure}
+The final correlation results are shown in figure \ref{fig:image2d} with an RMSE of 54.43.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{media/image2d}\label{fig:image2d}
+\captionof{figure}{Data distribution of the actual and predicted data bike usage using​ Random Forest}\label{fig:image2d}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/image2e}\label{fig:image2e}
+\captionof{figure}{Heat map correlation plot showing interval value of the regression line​ (Random Forest)}\label{fig:image2e}
+\end{figure}
+
+\textbf{Gradient boosted tree regression}\\
+We start by generating a model considering all the features with a RMSE of 81.30.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test1_gb}\label{fig:test1_gb}
+\captionof{figure}{Test ​1​ features importance: 81.30}\label{fig:test1_gb}
+\end{figure}
+Figure \ref{fig:anasst1} shows the removed columns and RMSE results on on each test:
+The choice of removing features is explained by the features importance plots.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/anasst3}\label{fig:anasst3}
+\captionof{figure}{Feature evaluation test cases}\label{fig:anasst3}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test2_gb}\label{fig:test2_gb}
+\captionof{figure}{Test ​2​ features importance: 88.48}\label{fig:test2_gb}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test3_gb}\label{fig:test3_gb}
+\captionof{figure}{Test ​3​ features importance: 84.92}\label{fig:test3_gb}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test4_gb}\label{fig:test4_gb}
+\captionof{figure}{Test 4 features importance: 76.71}\label{fig:test4_gb}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/test5_gb}\label{fig:test5_gb}
+\captionof{figure}{Test 5 features importance: 63.26}\label{fig:test5_gb}
+\end{figure}
+The final correlation results are shown in figure \ref{fig:image34} with an RMSE of 63.26.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{media/image34}\label{fig:image34}
+\captionof{figure}{Data distribution of the actual and predicted data bike usage using​ Gradient boosted tree regression}\label{fig:image34}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/image35}\label{fig:image35}
+\captionof{figure}{Heat map correlation plot showing interval value of the regression line​ (Gradient boosted tree regression)}\label{fig:image35}
+\end{figure}
+The following test series was implemented by regarding the least used station with a data set consisting of 145 entries.\\\\
+\textbf{Decision Tree Regression}\\
+
+The final correlation results are shown in figure \ref{fig:image34} with an RMSE of 11.72.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{media/image34}\label{fig:image34}
+\captionof{figure}{Data distribution of the actual and predicted data bike usage using​ Decision Tree Regression}\label{fig:image34}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/image18}\label{fig:image18}
+\captionof{figure}{Heat map correlation plot showing interval value of the regression line​ (Decision Tree Regression)}\label{fig:image18}
+\end{figure}
+Figure \ref{fig:anasst4} shows the removed columns and RMSE results.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/anasst4}\label{fig:anasst4}
+\captionof{figure}{Feature evaluation test cases}\label{fig:anasst4}
+\end{figure}
+
+\textbf{Random Forest}\\
+The final correlation results are shown in figure \ref{fig:image19} with an RMSE of 10.69.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{media/image19}\label{fig:image19}
+\captionof{figure}{Data distribution of the actual and predicted data bike usage using​ Random Forest}\label{fig:image19}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/image1a}\label{fig:image1a}
+\captionof{figure}{Heat map correlation plot showing interval value of the regression line​ (Random Forest)}\label{fig:image1a}
+\end{figure}
+Figure \ref{fig:anasst4} shows the removed columns and RMSE results.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/anasst5}\label{fig:anasst5}
+\captionof{figure}{Feature evaluation test cases}\label{fig:anasst5}
+\end{figure}
+
+\textbf{Gradient boosted tree regression}\\
+The final correlation results are shown in figure \ref{fig:image1b} with an RMSE of 11.60.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{media/image1b}\label{fig:image1b}
+\captionof{figure}{Data distribution of the actual and predicted data bike usage using​ Gradient boosted tree regression}\label{fig:image1b}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/image1c}\label{fig:image1c}
+\captionof{figure}{Heat map correlation plot showing interval value of the regression line​ (Gradient boosted tree regression)}\label{fig:image1c}
+\end{figure}
+Figure \ref{fig:anasst6} shows the removed columns and RMSE results.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{media/anasst5}\label{fig:anasst6}
+\captionof{figure}{Feature evaluation test cases}\label{fig:anasst6}
+\end{figure}
 \subsection{Modeling (Polynomial Regression)}\label{poly}
 Since we don't have a linear relationship between the data, a linear regression will not be helpful.
 For example, the regress \glqq Rented Bikes\grqq is not a linear correlation of temperature as even on rainy
