@@ -2,6 +2,8 @@
 
 \section{Responsibilities}
 
+\subsection{First semester}
+
 Within Scrum the team is self-organizing and cross-functional. This means that every
 team member can choose tasks fitting his knowledge base as well as his preferences
 and interests. Hence everyone was free to suggest and accept the tasks he liked
@@ -30,7 +32,7 @@ the working hours. Furthermore she created the presentation for every sprint.
 Moreover she solved several tasks like create Jupyter notebooks for geocode,
 reverse geocoding and compute distances as the crow flies, create the ER model,
 install the MySQL database and to research for Graphhopper.
-In the end it was her responsibility to write a project report and add the task 
+In the end it was her responsibility to write a project report and add the task
 descriptions of the team members to it.\\Pascal Riedel was responsible for research,
 document and compare the different Hadoop distributions. With the help of his
 weightened comparison table we could take the decision for one specific distribution.
@@ -38,5 +40,41 @@ It was also his part to install the \acs{hdp} as well as to implement a Map Redu
 During the first project phase he solved several issues according to \acs{hdp}.
 Furthermore he was responsible for the data profiling part and to create associated
 Zepellin notebooks.
-For more details please have a look at the responsibility table which could be
-found in attachment~\ref{resp}.
+% For more details please have a look at the responsibility table which could be
+% found in attachment~\ref{resp}.
+
+\subsection{Second semester}
+
+GG:
+postcodes db + 2-digits distances db + implementation in Django
+learning/prediction on hourly data
+features for all stations
+pandas profiling
+% help organisation of report and presentation
+
+Kathi:
+Scrum Master: presentations/reports + meetings organisation + sprint planning + ...
+created view for Django app
+
+Pascal Riedel continued taking care of Hadoop by fixing running issues on our
+cluster and by setting up another one on dedicated machines.
+He also worked on the management of the Nominatim server by cleaning the Nominatim
+PostgreSQL database to import only Europe data and configured Apache to run with
+Django, so Django doesn't run in develop mode any more.
+Finally on the configuration part, he fixed Graphhopper, finished preparing it
+and worked on an API to use it effectively. For these tasks, he was helped by
+Anass Khaldi.  
+This done, he could research a better analysis on the bike rental on the whole
+London network with a map of all the stations and the paths used by the users.
+Pascal used PySpark on the Hadoop cluster to prepare the raw bike rental dataset
+for prediction. He first prepared a daily-based dataset joined with weather usage
+and holidays, and later worked on a hourly-based one.
+
+Kathi Rodi and Anass Khaldi mainly worked on the data learning and prediction
+parts. They prepared the data and researched different learning algorithms with
+different parameters for a more accurate prediction. They also investigated the
+relevance of the different features and better ways to measure accuracies.
+Kathi also extracted and prepared extra features that could be added to the
+dataset to improve it (demographic data, events, income and political opinions).
+Guillaume Goni finished preparing and parsing these new features and integrating
+them into our existing datasets.
