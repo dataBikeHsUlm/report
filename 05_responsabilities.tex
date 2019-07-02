@@ -45,16 +45,8 @@ Zepellin notebooks.
 
 \subsection{Second semester}
 
-GG:
-postcodes db + 2-digits distances db + implementation in Django
-learning/prediction on hourly data
-features for all stations
-pandas profiling
-% help organisation of report and presentation
-
-Kathi:
-Scrum Master: presentations/reports + meetings organisation + sprint planning + ...
-created view for Django app
+Kathi Rodi continued her task of Scrum Master as last semester by organising
+sprints and meetings, as well as preparing reports and presentations.
 
 Pascal Riedel continued taking care of Hadoop by fixing running issues on our
 cluster and by setting up another one on dedicated machines.
@@ -63,7 +55,7 @@ PostgreSQL database to import only Europe data and configured Apache to run with
 Django, so Django doesn't run in develop mode any more.
 Finally on the configuration part, he fixed Graphhopper, finished preparing it
 and worked on an API to use it effectively. For these tasks, he was helped by
-Anass Khaldi.  
+Anass Khaldi.
 This done, he could research a better analysis on the bike rental on the whole
 London network with a map of all the stations and the paths used by the users.
 Pascal used PySpark on the Hadoop cluster to prepare the raw bike rental dataset
@@ -78,3 +70,15 @@ Kathi also extracted and prepared extra features that could be added to the
 dataset to improve it (demographic data, events, income and political opinions).
 Guillaume Goni finished preparing and parsing these new features and integrating
 them into our existing datasets.
+
+Guillaume Goni first focused on finishing the first part of the project concerning
+the postal codes and distance calculation by writing scripts to extract the
+postcodes from different sources and format/filter them and another script to
+calculate the distance between each pair of two-digits regions. Finally he
+completed the Django view to run the algorithm and query the database for distance
+information.
+Afterwards, Guillaume helped the team in diverse areas, for instance he adapted
+the learning algorithms configured by Kathi and Anass on the hourly-based dataset
+and displayed the predictions for comparison and helped Kathi with the extra
+features.
+
